@@ -27,9 +27,6 @@ import ColorMap from '../color-mapping';
 export default function HomeView() {
   return (
     <>
-      {/* <ScrollProgress scrollYProgress={scrollYProgress} /> */}
-
-      {/* <HomeHero /> */}
       <Container
         sx={{
           mt: { xs: 0, md: 15 },

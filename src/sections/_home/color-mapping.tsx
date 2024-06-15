@@ -66,15 +66,6 @@ const ColorMap = () => {
       loaded={loaded} // Add the loaded event
       ref={mapInstance}
       zoomSettings={{ enable: false }}
-      legendSettings={{
-        visible: true,
-        position: 'Bottom',
-        height: '10',
-        width: '80%',
-        mode: 'Interactive',
-        titleStyle: { size: '18px' },
-        title: { text: 'Title' },
-      }}
     >
       <Inject services={[Legend, MapsTooltip, Marker]} />
       <LayersDirective>
@@ -85,10 +76,10 @@ const ColorMap = () => {
           shapePropertyPath="region"
           shapeSettings={{
             colorValuePath: 'inches',
-            fill: '#E5E5E5',
+            fill: '#333',
             colorMapping: colorMappingData,
           }}
-          tooltipSettings={{ visible: true, valuePath: 'inches' }}
+          tooltipSettings={{ visible: false, valuePath: 'inches' }}
         >
           <MarkersDirective>
             <MarkerDirective

@@ -545,7 +545,7 @@ export const _descriptions = [
   `Magnam non eveniet optio optio ut aliquid atque. Velit libero aspernatur quis laborum consequatur laudantium. Tempora facere optio fugit accusantium ut. Omnis aspernatur reprehenderit autem esse ut ut enim voluptatibus.`,
 ];
 
-export const _reviews = [
+export const _review = [
   'This course exceeded my expectations! The content was well-structured and the instructor was very knowledgeable. Highly recommend for anyone looking to master design.',
   'Great introduction to fitness. The exercises are easy to follow and the instructor is very motivating. Perfect for beginners!',
   'I found this course very insightful. It provided practical tips and techniques for teaching online effectively. The resources provided were also very useful.',
