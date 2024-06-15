@@ -1,11 +1,12 @@
+import ChroniqueLandingView from 'src/sections/_chroniques-injustice/view/chronique-landing-view';
+import TravelPostsView from 'src/sections/_travel/view/travel-posts-view';
+
 // ----------------------------------------------------------------------
 
-import RojLandingView from 'src/sections/_roj/view/roj-landing-view';
-
 export const metadata = {
-  title: 'Marketing: Home',
+  title: 'Chronique injustice',
 };
 
-export default function RojLandingPage() {
-  return <RojLandingView />;
+export default function ChroniqueInjusticePage() {
+  return <ChroniqueLandingView />;
 }

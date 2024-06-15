@@ -9,5 +9,5 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return <MainLayout disabledSpacing>{children}</MainLayout>;
+  return <MainLayout>{children}</MainLayout>;
 }
