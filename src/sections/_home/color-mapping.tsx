@@ -17,11 +17,14 @@ import {
   MarkersDirective,
   MarkerDirective,
   Marker,
+  Zoom,
 } from '@syncfusion/ej2-react-maps';
 import * as data from './map-data/color-mapping.json';
 import * as morrocco from './map-data/morrocco.json';
 import { registerLicense } from '@syncfusion/ej2-base';
-let datasource: any = data as any;
+
+import pin from '../../../public/assets/logo/pin.png';
+const datasource: any = data as any;
 
 // Add coordinates to the data source
 registerLicense(
@@ -65,9 +68,9 @@ const ColorMap = () => {
       load={load}
       loaded={loaded} // Add the loaded event
       ref={mapInstance}
-      zoomSettings={{ enable: false }}
+      zoomSettings={{ enable: true }}
     >
-      <Inject services={[Legend, MapsTooltip, Marker]} />
+      <Inject services={[Legend, MapsTooltip, Marker, Zoom]} />
       <LayersDirective>
         <LayerDirective
           dataSource={datasource.color}
@@ -85,10 +88,11 @@ const ColorMap = () => {
             <MarkerDirective
               visible={true}
               animationDuration={0}
-              shape="Circle"
-              fill="white"
-              width={10}
-              border={{ color: '#285255', width: 2 }}
+              shape="Image"
+              imageUrl={pin.src}
+              height={15}
+              width={15}
+              border={{ color: '#fff', width: 2 }}
               dataSource={datasource.locals}
               tooltipSettings={{ template: template, visible: true, valuePath: 'latitude' }}
             />

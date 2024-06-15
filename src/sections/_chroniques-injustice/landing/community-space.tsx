@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { IBlogPostProps } from 'src/types/blog';
+import ComunitySpacePostItem from './community-space-post-item';
 
 // ----------------------------------------------------------------------
 
@@ -23,10 +24,9 @@ export default function CommunitySpace({ posts }: Props) {
           },
         }}
       >
-        {/* TODO : i stayed here */}
-        {/* {posts.slice(0, 8).map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))} */}
+        {posts.slice(0, 8).map((post) => (
+          <ComunitySpacePostItem key={post.id} post={post} />
+        ))}
       </Box>
 
       <Pagination

@@ -5,7 +5,9 @@
       "inches": 5.37,
       "value": "High",
       "latitude": 34.6867,
-      "longitude": -1.9114
+      "longitude": -1.9114,
+      "width": 30,
+      "heigth": 30
     },
     {
       "region": "Fes-Meknes",
