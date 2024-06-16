@@ -36,8 +36,8 @@ const ColorMap = () => {
 
   let colorMappingData: ColorMappingSettingsModel[] = [
     { from: 0.1, to: 2, color: '#03A6A6', label: '0 - 2' },
-    { from: 2, to: 4, color: '#0396A6', label: '2 - 4' },
-    { from: 4, to: 6, color: '#F28705', label: '4 - 6' },
+    { from: 2, to: 4, color: '#13B3C2', label: '2 - 4' },
+    { from: 4, to: 6, color: '#2E8D8D', label: '4 - 6' },
   ];
 
   let template: string =
@@ -53,12 +53,12 @@ const ColorMap = () => {
     const borderRects = document.querySelectorAll('#maps_MapBorder'); // Update the selector as needed
     rects.forEach((rect) => {
       if (rect.tagName === 'rect') {
-        rect.setAttribute('fill', '#F4F6F8'); // Example of manipulation
+        rect.setAttribute('fill', 'none'); // Example of manipulation
       }
     });
     borderRects.forEach((rect) => {
       if (rect.tagName === 'rect') {
-        rect.setAttribute('fill', '#F4F6F8'); // Example of manipulation
+        rect.setAttribute('fill', 'none'); // Example of manipulation
       }
     });
   };
@@ -90,8 +90,8 @@ const ColorMap = () => {
               animationDuration={0}
               shape="Image"
               imageUrl={pin.src}
-              height={15}
-              width={15}
+              height={20}
+              width={20}
               border={{ color: '#fff', width: 2 }}
               dataSource={datasource.locals}
               tooltipSettings={{ template: template, visible: true, valuePath: 'latitude' }}

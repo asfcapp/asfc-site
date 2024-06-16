@@ -5,6 +5,8 @@ import { useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 
 import { RouterLink } from 'src/routes/components';
+import Image from 'next/image';
+import ROJLogo from '../../../public/assets/logo/logoORJ.png';
 
 // ----------------------------------------------------------------------
 
@@ -66,7 +68,8 @@ function Logo({ single = false, sx }: LogoProps) {
           ...sx,
         }}
       >
-        {single ? singleLogo : fullLogo}
+        {/* {single ? singleLogo : fullLogo} */}
+        <Image src={ROJLogo} alt={''} width={80} height={60} />
       </Box>
     </Link>
   );
