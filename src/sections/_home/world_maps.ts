@@ -1,4 +1,4 @@
-export let world_map: object = {
+export const world_map: object = {
   type: 'FeatureCollection',
   features: [
     {
