@@ -32,15 +32,15 @@ registerLicense(
 );
 
 const ColorMap = () => {
-  let mapInstance = useRef<MapsComponent>(null);
+  const mapInstance = useRef<MapsComponent>(null);
 
-  let colorMappingData: ColorMappingSettingsModel[] = [
+  const colorMappingData: ColorMappingSettingsModel[] = [
     { from: 0.1, to: 2, color: '#03A6A6', label: '0 - 2' },
     { from: 2, to: 4, color: '#13B3C2', label: '2 - 4' },
     { from: 4, to: 6, color: '#2E8D8D', label: '4 - 6' },
   ];
 
-  let template: string =
+  const template: string =
     '<div id="markertooltiptemplate" style="width: 170px;opacity: 90%;background: rgba(53, 63, 76, 0.90);box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.40);padding:10px;border: 1px #abb9c6;border-radius: 4px;">' +
     '<div style="font-size:13px;color:#ffffff;font-weight: 500;"><center>${latitude}</center></div>' +
     '<hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">' +
