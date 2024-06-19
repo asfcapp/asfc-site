@@ -55,7 +55,7 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
           sx={{ color: 'inherit', opacity: 0.72 }}
         />
 
-        <Link component={RouterLink} href={paths.travel.post} color="inherit">
+        <Link component={RouterLink} href={`/chroniques-injustice/${post.id}`} color="inherit">
           <TextMaxLine
             sx={{
               typography: 'h6',

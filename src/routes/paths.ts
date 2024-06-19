@@ -1,6 +1,10 @@
 // ----------------------------------------------------------------------
 
 export const paths = {
+  // CHRONIQUE INJUSTICE
+  chroniqueInjustice: {
+    post: '',
+  },
   // Marketing
   marketing: {
     root: '/marketing',
