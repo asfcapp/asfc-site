@@ -3,24 +3,26 @@
  */
 
 import * as React from 'react';
+import { registerLicense } from '@syncfusion/ej2-base';
 import {
-  MapsComponent,
-  Inject,
-  ILoadedEventArgs,
-  LayersDirective,
-  LayerDirective,
-  Marker,
   Zoom,
+  Inject,
+  Marker,
+  Bubble,
   DataLabel,
   MapsTooltip,
-  BubblesDirective,
+  MapsComponent,
+  LayerDirective,
+  LayersDirective,
   BubbleDirective,
-  Bubble,
+  ILoadedEventArgs,
+  BubblesDirective,
 } from '@syncfusion/ej2-react-maps';
-import { registerLicense } from '@syncfusion/ej2-base';
+
 import morrocco from './map-data/morrocco.json';
 import data from './map-data/bubble-datasource.json';
-let datasource: any = data as any;
+
+const datasource: any = data as any;
 
 registerLicense(
   'Ngo9BigBOggjHTQxAR8/V1NAaF1cVGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEFjX35dcXJRRGFVV0ZyWw=='
@@ -44,7 +46,7 @@ const MultilayerMaps = () => {
         >
           <BubblesDirective>
             <BubbleDirective
-              visible={true}
+              visible
               dataSource={datasource}
               valuePath="value"
               colorValuePath="color"

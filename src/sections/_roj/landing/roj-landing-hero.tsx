@@ -4,31 +4,17 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-
-import { fShortenNumber } from 'src/utils/format-number';
-
 import { _mock } from 'src/_mock';
 
 import Image from 'src/components/image';
-import CountUp from 'src/components/count-up';
 
 // ----------------------------------------------------------------------
 
 const IMAGES = [...Array(1)].map((_, index) => _mock.image.travel(index + 2));
 
-const SUMMARY = [
-  { name: 'Air tickets sold', number: 130 },
-  { name: 'Tours booked', number: 196 },
-  { name: 'Site visitors', number: 10679 },
-  { name: 'Verified hotels', number: 877 },
-];
-
 // ----------------------------------------------------------------------
 
 export default function RojLandingHero() {
-  const smUp = useResponsive('up', 'sm');
-
   return (
     <Container
       sx={{
@@ -54,7 +40,7 @@ export default function RojLandingHero() {
       </Stack>
 
       <Grid container spacing={3}>
-        <Grid xs={12} sm={6} md={12}></Grid>
+        <Grid xs={12} sm={6} md={12} />
       </Grid>
       <Image alt={IMAGES[0]} src={IMAGES[0]} sx={{ height: 400, borderRadius: 2, width: 1 }} />
 

@@ -16,7 +16,7 @@ export default function SimpleView() {
       }}
     >
       <Typography variant="h3" align="center" paragraph>
-        {`Simple View!`}
+        Simple View!
       </Typography>
     </Container>
   );

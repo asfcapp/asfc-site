@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -15,7 +14,6 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { bgBlur } from 'src/theme/css';
 
 import Logo from 'src/components/logo';
-import Label from 'src/components/label';
 
 import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';

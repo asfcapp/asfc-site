@@ -6,6 +6,7 @@ import {
   _roles,
   _emails,
   _prices,
+  _review,
   _nativeL,
   _nativeM,
   _nativeS,
@@ -26,7 +27,6 @@ import {
   _descriptions,
   _productNames,
   _companyNames,
-  _review,
 } from './assets';
 
 // ----------------------------------------------------------------------

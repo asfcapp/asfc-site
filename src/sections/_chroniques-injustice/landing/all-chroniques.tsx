@@ -9,6 +9,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { _mock } from 'src/_mock';
 
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
+
 import AllChroniqueItem from './all-chronique-item';
 
 // ----------------------------------------------------------------------

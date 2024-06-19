@@ -1,25 +1,13 @@
 'use client';
 
-import { useScroll } from 'framer-motion';
 
-import { _pricingHome, _travelPosts } from 'src/_mock';
+import { Box, Stack, Container, Typography } from '@mui/material';
 
-import ScrollProgress from 'src/components/scroll-progress';
+import { _travelPosts } from 'src/_mock';
 
-import HomeHero from '../home-hero';
-import HomeFAQs from '../home-faqs';
-import HomeNewStart from '../home-new-start';
-import HomeCombination from '../home-combination';
-import HomeForDesigner from '../home-for-designer';
-import HomeAdvertisement from '../home-advertisement';
-import PricingHome from '../../pricing/home/pricing-home';
-import HomeFeatureHighlights from '../home-feature-highlights';
-import HomeFlexibleComponents from '../home-flexible-components';
 import TravelFeaturedPosts from 'src/sections/blog/travel/travel-featured-posts';
-import PostSearchMobile from 'src/sections/blog/common/post-search-mobile';
-import { Box, Container, Stack, Typography } from '@mui/material';
 import MarketingLandingAbout from 'src/sections/_marketing/landing/marketing-landing-about';
-import MyMap from '../my-map';
+
 import ColorMap from '../color-mapping';
 
 // ----------------------------------------------------------------------

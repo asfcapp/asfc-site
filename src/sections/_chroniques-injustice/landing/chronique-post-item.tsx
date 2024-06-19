@@ -4,7 +4,6 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
@@ -13,6 +12,7 @@ import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
 import { IBlogPostProps } from 'src/types/blog';
+
 import ChroniquePostTimeBlock from './chronique-post-item-block';
 
 // ----------------------------------------------------------------------

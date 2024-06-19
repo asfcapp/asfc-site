@@ -4,26 +4,26 @@
 
 import * as React from 'react';
 import { useRef } from 'react';
-import { ColorMappingSettingsModel } from '@syncfusion/ej2-maps';
-
-import {
-  MapsComponent,
-  Inject,
-  ILoadedEventArgs,
-  LayersDirective,
-  LayerDirective,
-  Legend,
-  MapsTooltip,
-  MarkersDirective,
-  MarkerDirective,
-  Marker,
-  Zoom,
-} from '@syncfusion/ej2-react-maps';
-import * as data from './map-data/color-mapping.json';
-import * as morrocco from './map-data/morrocco.json';
 import { registerLicense } from '@syncfusion/ej2-base';
+import { ColorMappingSettingsModel } from '@syncfusion/ej2-maps';
+import {
+  Zoom,
+  Inject,
+  Legend,
+  Marker,
+  MapsTooltip,
+  MapsComponent,
+  LayerDirective,
+  LayersDirective,
+  MarkerDirective,
+  ILoadedEventArgs,
+  MarkersDirective,
+} from '@syncfusion/ej2-react-maps';
 
+import * as morrocco from './map-data/morrocco.json';
+import * as data from './map-data/color-mapping.json';
 import pin from '../../../public/assets/logo/pin.png';
+
 const datasource: any = data as any;
 
 // Add coordinates to the data source
@@ -39,12 +39,6 @@ const ColorMap = () => {
     { from: 2, to: 4, color: '#13B3C2', label: '2 - 4' },
     { from: 4, to: 6, color: '#2E8D8D', label: '4 - 6' },
   ];
-
-  const template: string =
-    '<div id="markertooltiptemplate" style="width: 160px;opacity: 90%;background: rgba(53, 63, 76, 0.90);box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.40);padding:10px;border: 1px #abb9c6;border-radius: 4px;">' +
-    '<div style="font-size:13px;color:#ffffff;font-weight: 500;"><center>${latitude}</center></div>' +
-    '<hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">' +
-    '<div><span style="font-size:13px;color:#cccccc">Population  : </span><span style="font-size:13px;color:#ffffff;font-weight: 500;">${latitude}</span></div>';
 
   const load = (args: ILoadedEventArgs): void => {};
   const loaded = (args: ILoadedEventArgs): void => {
@@ -62,6 +56,7 @@ const ColorMap = () => {
       }
     });
   };
+
   return (
     <MapsComponent
       id="maps"
@@ -86,7 +81,7 @@ const ColorMap = () => {
         >
           <MarkersDirective>
             <MarkerDirective
-              visible={true}
+              visible
               animationDuration={0}
               shape="Image"
               imageUrl={pin.src}
@@ -94,7 +89,12 @@ const ColorMap = () => {
               width={20}
               border={{ color: '#fff', width: 2 }}
               dataSource={datasource.locals}
-              tooltipSettings={{ template: template, visible: true, valuePath: 'latitude' }}
+              tooltipSettings={{
+                template:
+                  '<div id="markertooltiptemplate" style="width: 160px;opacity: 90%;background: rgba(53, 63, 76, 0.90);box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.40);padding:10px;border: 1px #abb9c6;border-radius: 4px;"><div style="font-size:13px;color:#ffffff;font-weight: 500;"><center>${latitude}</center></div><hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD"><div><span style="font-size:13px;color:#cccccc">Population  : </span><span style="font-size:13px;color:#ffffff;font-weight: 500;">${latitude}</span></div>',
+                visible: true,
+                valuePath: 'latitude',
+              }}
             />
           </MarkersDirective>
         </LayerDirective>

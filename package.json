@@ -30,6 +30,7 @@
     "@mui/system": "^5.14.20",
     "@mui/x-date-pickers": "^6.18.4",
     "@syncfusion/ej2-base": "24.2.8",
+    "@syncfusion/ej2-maps": "^26.1.35",
     "@syncfusion/ej2-react-maps": "24",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.16",

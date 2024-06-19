@@ -7,6 +7,7 @@ import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
 import { IBlogPostProps } from 'src/types/blog';
+
 import CommunitySpacePostTimeBlock from './community-space-post-time-block';
 
 // ----------------------------------------------------------------------

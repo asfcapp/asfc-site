@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { IBlogPostProps } from 'src/types/blog';
+
 import ChroniquePostItem from './chronique-post-item';
 
 // ----------------------------------------------------------------------

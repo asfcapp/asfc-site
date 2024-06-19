@@ -1,5 +1,4 @@
 import Link from '@mui/material/Link';
-import Masonry from '@mui/lab/Masonry';
 import Divider from '@mui/material/Divider';
 import Collapse from '@mui/material/Collapse';
 import TextField from '@mui/material/TextField';
@@ -16,7 +15,6 @@ import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
 
 import { _socials } from 'src/_mock';
 
@@ -24,7 +22,6 @@ import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 
 import { NavSubListProps } from './nav/types';
-import { pageLinks, navConfig } from './config-navigation';
 
 // ----------------------------------------------------------------------
 
@@ -42,15 +39,7 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Footer() {
-  const mdUp = useResponsive('up', 'md');
-
   const pathname = usePathname();
-
-  const mobileList = navConfig.find((i) => i.title === 'Pages') || [];
-
-  const desktopList = pageLinks.sort((listA, listB) => Number(listA.order) - Number(listB.order));
-
-  const renderLists = mdUp ? desktopList : mobileList;
 
   const isHome = pathname === '/';
 

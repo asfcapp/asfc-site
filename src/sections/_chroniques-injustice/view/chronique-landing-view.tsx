@@ -2,14 +2,14 @@
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import { Stack, Typography } from '@mui/material';
 
 import { _tags, _mock, _categories, _travelPosts } from 'src/_mock';
 
-import ChroniquePosts from '../landing/chronique-posts';
 import AllChronique from '../landing/all-chroniques';
+import ChroniquePosts from '../landing/chronique-posts';
 import CommunitySpace from '../landing/community-space';
 import PostSidebar from '../landing/community-space-posts-sidebar';
-import { Stack, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
