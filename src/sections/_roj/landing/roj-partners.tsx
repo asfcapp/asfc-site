@@ -3,12 +3,9 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-
 import { ITeamMemberProps } from 'src/types/team';
 
 import RojSinglePartner from './roj-single-partner';
-import RojSinglePartnerMobile from './roj-single-partner-mobile';
 
 // ----------------------------------------------------------------------
 
@@ -17,8 +14,6 @@ type Props = {
 };
 
 export default function RojPartners({ members }: Props) {
-  const mdUp = useResponsive('up', 'md');
-
   return (
     <Box
       sx={{
@@ -49,15 +44,9 @@ export default function RojPartners({ members }: Props) {
             },
           }}
         >
-          {members
-            .slice(0, 8)
-            .map((member) =>
-              mdUp ? (
-                <RojSinglePartner key={member.id} member={member} />
-              ) : (
-                <RojSinglePartnerMobile key={member.id} member={member} />
-              )
-            )}
+          {members.slice(0, 8).map((member) => (
+            <RojSinglePartner key={member.id} member={member} />
+          ))}
         </Box>
       </Container>
     </Box>

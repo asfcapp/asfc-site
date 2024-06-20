@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  _members,
-} from 'src/_mock';
+import { _members } from 'src/_mock';
 
 import RojTestimonial from '../landing/roj-partners';
 import RojLandingHero from '../landing/roj-landing-hero';
