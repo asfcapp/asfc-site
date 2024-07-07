@@ -14,15 +14,37 @@ import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 
 import { IBlogPostProps } from 'src/types/blog';
+import { useEffect, useState } from 'react';
+import { fetchPostById } from 'src/lib/queries';
+import urlFor from 'src/lib/sanity';
+import { Post } from 'src/types/post';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: IBlogPostProps;
+  id: string;
+  setTitle: (title: string) => void;
 };
 
-export default function ChroniquePostHero({ post }: Props) {
+export default function ChroniquePostHero({ id, setTitle }: Props) {
   const theme = useTheme();
+  const [post, setPost] = useState<Post | null>(null); // Replace 'any' with your actual post interface/type
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedPost = await fetchPostById(id);
+        setPost(fetchedPost);
+        setTitle(fetchedPost?.title);
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
 
   return (
     <Box
@@ -32,7 +54,7 @@ export default function ChroniquePostHero({ post }: Props) {
         ...bgGradient({
           startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
           endColor: `${theme.palette.common.black} 75%`,
-          imgUrl: post.heroUrl,
+          imgUrl: eventImageUrl ?? '',
         }),
       }}
     >
@@ -53,16 +75,12 @@ export default function ChroniquePostHero({ post }: Props) {
                 },
               }}
             >
-              <Typography variant="body2" sx={{ opacity: 0.72 }}>
-                {post.duration}
-              </Typography>
-
               <Typography variant="h2" component="h1">
-                {post.title}
+                {post?.title}
               </Typography>
 
               <Typography variant="caption" sx={{ opacity: 0.72 }}>
-                {fDate(post.createdAt, 'dd/MM/yyyy p')}
+                {fDate(post?.publishedAt, 'dd/MM/yyyy p')}
               </Typography>
 
               <Stack direction="row">

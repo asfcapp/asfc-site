@@ -5,19 +5,30 @@ import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { ITeamMemberProps } from 'src/types/team';
-
+import { Partenaire } from 'src/types/partenaire';
+import { fetchPartenaires } from 'src/lib/queries';
 import RojSinglePartner from './roj-single-partner';
 import RojSinglePartnerMobile from './roj-single-partner-mobile';
+import { useEffect, useState } from 'react';
 
-// ----------------------------------------------------------------------
-
-type Props = {
-  members: ITeamMemberProps[];
-};
-
-export default function RojPartners({ members }: Props) {
+export default function RojPartners() {
   const mdUp = useResponsive('up', 'md');
+  const [data, setData] = useState<Partenaire[] | null>(null); // Use Partenaire[] instead of Partenaire
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await fetchPartenaires();
+        setData(fetchedData);
+      } catch (error) {
+        console.error('Error fetching partenaires:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log('data fetched : ', data);
 
   return (
     <Box
@@ -49,13 +60,13 @@ export default function RojPartners({ members }: Props) {
             },
           }}
         >
-          {members
-            .slice(0, 8)
-            .map((member) =>
+          {data
+            ?.slice(0, 8)
+            .map((partenaire) =>
               mdUp ? (
-                <RojSinglePartner key={member.id} member={member} />
+                <RojSinglePartner key={partenaire._id} partenaire={partenaire} />
               ) : (
-                <RojSinglePartnerMobile key={member.id} member={member} />
+                <RojSinglePartnerMobile key={partenaire._id} partenaire={partenaire} />
               )
             )}
         </Box>

@@ -14,21 +14,26 @@ import TextMaxLine from 'src/components/text-max-line';
 import { IBlogPostProps } from 'src/types/blog';
 
 import ChroniquePostTimeBlock from './chronique-post-item-block';
+import { Post } from 'src/types/post';
+import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: IBlogPostProps;
+  post: Post;
   largePost?: boolean;
 };
 
 export default function ChroniquePostItem({ post, largePost }: Props) {
   const theme = useTheme();
+  const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
+  const avatarUrl = post?.author?.image ? urlFor(post?.author?.image)?.url() : null;
+  console.log('id, ', post?._id);
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
       <Image
-        src={post.coverUrl}
+        src={eventImageUrl || ''}
         alt={post.title}
         ratio="1/1"
         overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
@@ -50,12 +55,11 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
         }}
       >
         <ChroniquePostTimeBlock
-          createdAt={fDate(post.createdAt)}
-          duration={post.duration}
+          createdAt={fDate(post.publishedAt)}
           sx={{ color: 'inherit', opacity: 0.72 }}
         />
 
-        <Link component={RouterLink} href={`/chroniques-injustice/${post.id}`} color="inherit">
+        <Link component={RouterLink} href={`/chroniques-injustice/${post?._id}`} color="inherit">
           <TextMaxLine
             sx={{
               typography: 'h6',
@@ -68,11 +72,9 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
           </TextMaxLine>
         </Link>
 
-        {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>{post.description}</TextMaxLine>}
-
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
           <Avatar
-            src={post.author.avatarUrl}
+            src={avatarUrl ?? ''}
             sx={{
               mr: 1,
               width: 32,

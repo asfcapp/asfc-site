@@ -11,7 +11,7 @@ import Iconify from 'src/components/iconify';
 
 export default function PostSocialsShare() {
   return (
-    <Stack direction="row" sx={{ mt: 5 }}>
+    <Stack direction="row" sx={{ my: 5 }}>
       <Typography variant="subtitle2" sx={{ mt: 0.75, mr: 1.5 }}>
         Share:
       </Typography>

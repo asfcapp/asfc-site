@@ -4,17 +4,33 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { _mock } from 'src/_mock';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 import Image from 'src/components/image';
+import { fetchRojData } from 'src/lib/queries';
+import { client } from 'src/lib/client';
+import imageUrlBuilder from '@sanity/image-url';
+import { useEffect, useState } from 'react';
+import { RojDocument } from 'src/types/roj';
+import BlockContentRenderer from './block-content-renderer';
+import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 
-const IMAGES = [...Array(1)].map((_, index) => _mock.image.travel(index + 2));
+const RojLandingHero = () => {
+  const [data, setData] = useState<RojDocument | null>(null); // Use the RojData type
 
-// ----------------------------------------------------------------------
+  const eventImageUrl = data?.image ? urlFor(data?.image)?.url() : null;
 
-export default function RojLandingHero() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await fetchRojData();
+      setData(fetchedData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container
       sx={{
@@ -31,18 +47,19 @@ export default function RojLandingHero() {
           pb: { xs: 5, md: 10 },
         }}
       >
-        <Typography variant="h2">Présentation du ROJ</Typography>
+        <Typography variant="h2">{data?.title}</Typography>
 
-        <Typography sx={{ color: 'text.secondary' }}>
-          Master Digital Marketing Strategy, Social Media Marketing, SEO, YouTube, Email, Facebook
-          Marketing, Analytics & More!
-        </Typography>
+        <Typography sx={{ color: 'text.secondary' }}>{data?.subtitle}</Typography>
       </Stack>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={12} />
       </Grid>
-      <Image alt={IMAGES[0]} src={IMAGES[0]} sx={{ height: 400, borderRadius: 2, width: 1 }} />
+      <Image
+        alt={data?._id || 'Event Image'}
+        src={eventImageUrl || 'https://via.placeholder.com/550x310'}
+        sx={{ height: 400, borderRadius: 2, width: 1 }}
+      />
 
       <Grid
         container
@@ -64,27 +81,19 @@ export default function RojLandingHero() {
               mx: { xs: 'auto', md: 0 },
             }}
           />
-          <Typography variant="h3">
-            Maecenas malesuada. Cras ultricies mi eu turpis hendrerit fringilla Nunc egestas
-          </Typography>
+          <Typography variant="h3">{data?.sectionTitle}</Typography>
         </Grid>
 
         <Grid xs={12} md={6} lg={6}>
           <Typography variant="h4" paragraph>
-            Fusce convallis metus id felis luctus
+            {data?.sectionSubTitle}
           </Typography>
 
-          <Typography sx={{ color: 'text.secondary' }}>
-            Fusce convallis metus id felis luctus adipiscing. Etiam imperdiet imperdiet orci.
-            Vestibulum eu odio. Phasellus nec sem in justo pellentesque facilisis.
-            <br />
-            <br />
-            Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Maecenas nec odio et
-            ante tincidunt tempus. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec,
-            nisi. Vestibulum eu odio. Curabitur ullamcorper ultricies nisi.
-          </Typography>
+          {<BlockContentRenderer data={data?.sectionDescription} />}
         </Grid>
       </Grid>
     </Container>
   );
-}
+};
+
+export default RojLandingHero;

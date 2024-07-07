@@ -19,6 +19,8 @@ import ChroniquePostHero from '../blog/chronique-post-hero';
 import TravelPostHero from '../../blog/travel/travel-post-hero';
 import PostSocialsShare from '../../blog/common/post-socials-share';
 import TravelLatestPosts from '../../blog/travel/travel-latest-posts';
+import { useState } from 'react';
+import ChroniquePostBody from '../blog/chronique-post-body';
 
 // ----------------------------------------------------------------------
 
@@ -26,99 +28,31 @@ type Props = {
   id: string;
 };
 export default function ChroniquePostView({ id }: Props) {
-  const { title, description, author, tags, content } = _travelPosts[0];
-  const post = _travelPosts.find((b) => b.id === id);
+  const [title, setTitle] = useState('');
 
   return (
     <>
-      {post && <ChroniquePostHero post={post} />}{' '}
+      <ChroniquePostHero setTitle={setTitle} id={id} />
+
       <Container>
         <CustomBreadcrumbs
           sx={{ my: 3 }}
           links={[
             { name: 'Bienvenue', href: '/' },
             { name: "Chroniques de l'injustice", href: '/chroniques-injustice' },
-            { name: post?.title },
-          ]}
-        />
-      </Container>
-      <Divider sx={{ mb: { xs: 6, md: 10 } }} />
-      <Container>
-        <Grid container spacing={{ md: 8 }}>
-          {post && (
-            <Grid xs={12} md={8}>
-              <Typography variant="h5" sx={{ mb: 5 }}>
-                {post?.description}
-              </Typography>
-
-              <Markdown content={post?.content} firstLetter />
-              <PostTags tags={post?.tags} />
-
-              <PostSocialsShare />
-
-              <Divider sx={{ mt: 8 }} />
-
-              <PostAuthor author={post?.author} />
-            </Grid>
-          )}
-
-          <Grid xs={12} md={4}>
-            <PostSidebar
-              popularTags={_tags}
-              author={author}
-              categories={_categories}
-              recentPosts={{ list: _travelPosts.slice(-4) }}
-              advertisement={{
-                title: 'Advertisement',
-                description: 'Duis leo. Donec orci lectus, aliquam ut, faucibus non',
-                imageUrl: _mock.image.travel(9),
-                path: '',
-              }}
-            />
-          </Grid>
-        </Grid>
-      </Container>
-    </>
-  );
-  return (
-    <>
-      <TravelPostHero post={_travelPosts[0]} />
-
-      <Container>
-        <CustomBreadcrumbs
-          sx={{ my: 3 }}
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Blog', href: paths.travel.posts },
             { name: title },
           ]}
         />
       </Container>
-
-      <Divider sx={{ mb: { xs: 6, md: 10 } }} />
-
       <Container>
         <Grid container spacing={{ md: 8 }}>
           <Grid xs={12} md={8}>
-            <Typography variant="h5" sx={{ mb: 5 }}>
-              {description}
-            </Typography>
-
-            <Markdown content={content} firstLetter />
-
-            <PostTags tags={tags} />
-
+            <ChroniquePostBody id={id} />
             <PostSocialsShare />
-
-            <Divider sx={{ mt: 8 }} />
-
-            <PostAuthor author={author} />
           </Grid>
-
           <Grid xs={12} md={4}>
             <PostSidebar
               popularTags={_tags}
-              author={author}
               categories={_categories}
               recentPosts={{ list: _travelPosts.slice(-4) }}
               advertisement={{
@@ -131,8 +65,6 @@ export default function ChroniquePostView({ id }: Props) {
           </Grid>
         </Grid>
       </Container>
-
-      <TravelLatestPosts posts={_travelPosts.slice(0, 4)} />
     </>
   );
 }

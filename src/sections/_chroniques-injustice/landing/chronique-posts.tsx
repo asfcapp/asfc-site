@@ -4,11 +4,12 @@ import Container from '@mui/material/Container';
 import { IBlogPostProps } from 'src/types/blog';
 
 import ChroniquePostItem from './chronique-post-item';
+import { Post } from 'src/types/post';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  posts: IBlogPostProps[];
+  posts: Post[];
 };
 
 export default function ChroniquePosts({ posts }: Props) {
@@ -44,7 +45,7 @@ export default function ChroniquePosts({ posts }: Props) {
           }}
         >
           {posts.slice(1, 5).map((post) => (
-            <ChroniquePostItem key={post.id} post={post} />
+            <ChroniquePostItem key={post._id} post={post} />
           ))}
         </Box>
       </Box>

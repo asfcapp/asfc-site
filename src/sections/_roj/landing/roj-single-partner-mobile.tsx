@@ -3,17 +3,17 @@ import Stack from '@mui/material/Stack';
 
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-
-import { ITeamMemberProps } from 'src/types/team';
-
-// ----------------------------------------------------------------------
+import urlFor from 'src/lib/sanity';
+import { Partenaire } from 'src/types/partenaire';
 
 type Props = {
-  member: ITeamMemberProps;
+  partenaire: Partenaire;
   onSiderbar?: boolean;
 };
 
-export default function RojSinglePartnerMobile({ member, onSiderbar }: Props) {
+export default function RojSinglePartnerMobile({ partenaire, onSiderbar }: Props) {
+  const image = partenaire?.photo ? urlFor(partenaire?.photo)?.url() : null;
+
   return (
     <Stack
       spacing={2}
@@ -22,8 +22,8 @@ export default function RojSinglePartnerMobile({ member, onSiderbar }: Props) {
       sx={{ width: 1 }}
     >
       <Image
-        alt={member.name}
-        src={member.photo}
+        alt={partenaire.name}
+        src={image || ''}
         sx={{
           width: 80,
           height: 80,
@@ -33,8 +33,10 @@ export default function RojSinglePartnerMobile({ member, onSiderbar }: Props) {
       />
 
       <Stack spacing={onSiderbar ? 0.5 : 1}>
-        <Link color="inherit">
-          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{member.name}</TextMaxLine>
+        <Link color="inherit" href="#">
+          {' '}
+          {/* Replace '#' with your actual link */}
+          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{partenaire.name}</TextMaxLine>
         </Link>
       </Stack>
     </Stack>

@@ -10,13 +10,28 @@ import AllChronique from '../landing/all-chroniques';
 import ChroniquePosts from '../landing/chronique-posts';
 import CommunitySpace from '../landing/community-space';
 import PostSidebar from '../landing/community-space-posts-sidebar';
+import { useEffect, useState } from 'react';
+import urlFor from 'src/lib/sanity';
+import { fetchPosts } from 'src/lib/queries';
+import { Post } from 'src/types/post';
 
 // ----------------------------------------------------------------------
 
 export default function ChroniqueLandingView() {
+  const [data, setData] = useState<Post[] | null>(null); // Use the RojData type
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await fetchPosts();
+      setData(fetchedData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <ChroniquePosts posts={_travelPosts.slice(-5)} />
+      {data && <ChroniquePosts posts={data} />}
 
       <AllChronique />
 

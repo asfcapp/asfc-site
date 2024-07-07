@@ -7,5 +7,7 @@ export const metadata = {
 };
 
 export default function ChroniqueInjusticePage({ params }: { params: { id: string } }) {
+  console.log(params);
+
   return <ChroniquePostView id={params.id} />;
 }
