@@ -52,14 +52,13 @@ export default function ChroniqueLandingView() {
         </Stack>
         <Grid container spacing={{ md: 8 }}>
           <Grid xs={12} md={8}>
-            <CommunitySpace posts={_travelPosts} />
+            {/*   COMMUNITY SPACE */}
           </Grid>
 
           <Grid xs={12} md={4}>
             <PostSidebar
               popularTags={_tags}
               categories={_categories}
-              recentPosts={{ list: _travelPosts.slice(-4) }}
               advertisement={{
                 title: 'Advertisement',
                 description: 'Duis leo. Donec orci lectus, aliquam ut, faucibus non',
