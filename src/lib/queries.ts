@@ -95,7 +95,7 @@ export async function fetchPostById(id: string) {
     const post = await client.fetch(query, { id });
     return post;
   } catch (error) {
-    console.error('Error fetching post by ID:', error);
+    console.error('Error fetching post by id:', error);
     return null;
   }
 }
