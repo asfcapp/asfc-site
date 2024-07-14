@@ -8,6 +8,7 @@ export type IAuthorProps = {
   bio: string;
   quotes: string;
   image: string;
+  avatarUrl: string;
   facebook?: string;
   linkedin?: string;
   instagram?: string;

@@ -21,7 +21,6 @@ type Props = {
 };
 
 export default function ComunitySpacePostItem({ post }: Props) {
-  console.log(paths.travel.post);
 
   return (
     <Stack spacing={2.5}>
@@ -38,7 +37,7 @@ export default function ComunitySpacePostItem({ post }: Props) {
       </Stack>
 
       <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-        <Avatar src={post.author.avatarUrl} sx={{ mr: 1 }} />
+        <Avatar src={post.author?.avatarUrl} sx={{ mr: 1 }} />
         {post.author.name}
       </Stack>
     </Stack>
