@@ -9,12 +9,13 @@ import { _tags, _mock } from 'src/_mock';
 
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
+import PostSidebar from 'src/sections/common/post-sidebar';
+import PostSocialsShare from 'src/sections/common/post-socials-share';
+
 import { IAuthorProps } from 'src/types/author';
 
 import ChroniquePostHero from '../blog/chronique-post-hero';
 import ChroniquePostBody from '../blog/chronique-post-body';
-import PostSocialsShare from 'src/sections/common/post-socials-share';
-import PostSidebar from 'src/sections/common/post-sidebar';
 
 // ----------------------------------------------------------------------
 

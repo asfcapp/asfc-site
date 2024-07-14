@@ -7,13 +7,12 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, Typography } from '@mui/material';
 
 import { fetchPosts } from 'src/lib/queries';
-import { _tags, _mock, _categories, _travelPosts } from 'src/_mock';
+import { _tags, _mock, _categories } from 'src/_mock';
 
 import { Post } from 'src/types/post';
 
 import AllChronique from '../landing/all-chroniques';
 import ChroniquePosts from '../landing/chronique-posts';
-import CommunitySpace from '../landing/community-space';
 import PostSidebar from '../landing/community-space-posts-sidebar';
 
 // ----------------------------------------------------------------------
