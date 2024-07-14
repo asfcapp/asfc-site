@@ -23,7 +23,7 @@ import { IAuthorProps } from 'src/types/author';
 import { Categories } from 'src/types/categories';
 
 import PostItemMobile from './post-item-mobile';
-import Advertisement, { AdvertisementProps } from '../../advertisement';
+import Advertisement, { AdvertisementProps } from '../advertisement';
 
 // ----------------------------------------------------------------------
 
