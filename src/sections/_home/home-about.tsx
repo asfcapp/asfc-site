@@ -1,29 +1,15 @@
+import { useState, useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import { useEffect, useState } from 'react';
-import { Home } from 'src/types/home';
+
 import { fetchHomeData } from 'src/lib/queries';
 
-// ----------------------------------------------------------------------
-
-const ROWS = [
-  {
-    title: 'Mission',
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-  {
-    title: 'vision',
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-  {
-    title: 'valeurs',
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-];
+import { Home } from 'src/types/home';
 
 // ----------------------------------------------------------------------
 

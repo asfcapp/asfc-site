@@ -1,22 +1,18 @@
+import { useState, useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { fDate } from 'src/utils/format-time';
 
-import { _socials } from 'src/_mock';
-import { bgGradient } from 'src/theme/css';
-
-import Iconify from 'src/components/iconify';
-
-import { IBlogPostProps } from 'src/types/blog';
-import { useEffect, useState } from 'react';
-import { fetchPostById } from 'src/lib/queries';
 import urlFor from 'src/lib/sanity';
+import { bgGradient } from 'src/theme/css';
+import { fetchPostById } from 'src/lib/queries';
+
 import { Post } from 'src/types/post';
 
 // ----------------------------------------------------------------------
@@ -26,9 +22,9 @@ type Props = {
   setTitle: (title: string) => void;
 };
 
-export default function ChroniquePostHero({ id, setTitle }: Props) {
+export default function ChroniquePostHero({ id, setTitle,  }: Props) {
   const theme = useTheme();
-  const [post, setPost] = useState<Post | null>(null); // Replace 'any' with your actual post interface/type
+  const [post, setPost] = useState<Post | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +38,7 @@ export default function ChroniquePostHero({ id, setTitle }: Props) {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, setTitle]); // Include setTitle in the dependency array
 
   const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
 
@@ -83,13 +79,13 @@ export default function ChroniquePostHero({ id, setTitle }: Props) {
                 {fDate(post?.publishedAt, 'dd/MM/yyyy p')}
               </Typography>
 
-              <Stack direction="row">
+              {/* <Stack direction="row">
                 {_socials.map((social) => (
                   <IconButton key={social.value}>
                     <Iconify icon={social.icon} sx={{ color: social.color }} />
                   </IconButton>
-                ))}
-              </Stack>
+                ))} */}
+              {/* </Stack> */}
             </Stack>
           </Grid>
         </Grid>

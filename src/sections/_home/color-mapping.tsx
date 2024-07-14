@@ -64,7 +64,7 @@ const ColorMap = () => {
       load={load}
       loaded={loaded} // Add the loaded event
       ref={mapInstance}
-      zoomSettings={{ enable: true }}
+      zoomSettings={{ enable: false }}
     >
       <Inject services={[Legend, MapsTooltip, Marker, Zoom]} />
       <LayersDirective>

@@ -1,23 +1,29 @@
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 
+import { RouterLink } from 'src/routes/components';
+
 import { fDate } from 'src/utils/format-time';
+
+import urlFor from 'src/lib/sanity';
 
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import { IBlogPostProps } from 'src/types/blog';
+import { Post } from 'src/types/post';
 
 import PostTimeBlock from './post-time-block';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: IBlogPostProps;
+  post: Post;
   onSiderbar?: boolean;
 };
 
 export default function PostItemMobile({ post, onSiderbar }: Props) {
+  const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
+
   return (
     <Stack
       spacing={2}
@@ -27,7 +33,7 @@ export default function PostItemMobile({ post, onSiderbar }: Props) {
     >
       <Image
         alt={post.title}
-        src={post.coverUrl}
+        src={eventImageUrl ?? ''}
         sx={{
           width: 80,
           height: 80,
@@ -37,11 +43,11 @@ export default function PostItemMobile({ post, onSiderbar }: Props) {
       />
 
       <Stack spacing={onSiderbar ? 0.5 : 1}>
-        <Link color="inherit">
-          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{post.title}</TextMaxLine>
+      <Link component={RouterLink} href={`/chroniques-injustice/${post?._id}`} color="inherit">
+      <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{post.title}</TextMaxLine>
         </Link>
 
-        <PostTimeBlock createdAt={fDate(post.createdAt)} duration={post.duration} />
+        <PostTimeBlock createdAt={fDate(post.publishedAt)}  />
       </Stack>
     </Stack>
   );

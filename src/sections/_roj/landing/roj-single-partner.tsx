@@ -1,13 +1,16 @@
-import { Box, Paper } from '@mui/material';
+import { m } from 'framer-motion';
+
 import Stack from '@mui/material/Stack';
+import { Box, Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
+import urlFor from 'src/lib/sanity';
 
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import urlFor from 'src/lib/sanity';
-import { Partenaire } from 'src/types/partenaire';
-import { m } from 'framer-motion';
 import { varHover, varTranHover } from 'src/components/animate';
+
+import { Partenaire } from 'src/types/partenaire';
 
 // ----------------------------------------------------------------------
 

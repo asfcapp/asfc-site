@@ -1,9 +1,11 @@
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 
+import urlFor from 'src/lib/sanity';
+
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import urlFor from 'src/lib/sanity';
+
 import { Partenaire } from 'src/types/partenaire';
 
 type Props = {

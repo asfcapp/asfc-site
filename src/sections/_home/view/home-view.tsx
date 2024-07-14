@@ -1,17 +1,31 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+
 import { Box, Stack, Container, Typography } from '@mui/material';
 
-import { _travelPosts } from 'src/_mock';
+import { fetchHomePosts } from 'src/lib/queries';
 
-import TravelFeaturedPosts from 'src/sections/blog/travel/travel-featured-posts';
+import { Post } from 'src/types/post';
 
-import ColorMap from '../color-mapping';
 import HomeAbout from '../home-about';
+import ColorMap from '../color-mapping';
+import FeaturedPosts from '../landing/featured-posts';
 
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
+  const [data, setData] = useState<Post[] | null>(null); // Use the RojData type
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await fetchHomePosts();
+      setData(fetchedData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Container
@@ -20,7 +34,7 @@ export default function HomeView() {
           pb: 10,
         }}
       >
-        <TravelFeaturedPosts posts={_travelPosts.slice(-5)} />
+        <FeaturedPosts posts={data ?? []} />
       </Container>
       <Box
         sx={{

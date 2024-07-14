@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -5,11 +7,12 @@ import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { Partenaire } from 'src/types/partenaire';
 import { fetchPartenaires } from 'src/lib/queries';
+
+import { Partenaire } from 'src/types/partenaire';
+
 import RojSinglePartner from './roj-single-partner';
 import RojSinglePartnerMobile from './roj-single-partner-mobile';
-import { useEffect, useState } from 'react';
 
 export default function RojPartners() {
   const mdUp = useResponsive('up', 'md');

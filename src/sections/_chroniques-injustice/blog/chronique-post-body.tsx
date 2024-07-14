@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
-import { TypedObject } from '@portabletext/types';
-import imageUrlBuilder from '@sanity/image-url';
-import { client } from 'src/lib/client';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { Divider, Typography } from '@mui/material';
 import Image from 'next/image';
-import { Post } from 'src/types/post';
+import imageUrlBuilder from '@sanity/image-url';
+import { TypedObject } from '@portabletext/types';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
+import React, { Dispatch, useState, useEffect, SetStateAction } from 'react';
+
+import {  Typography } from '@mui/material';
+
+import { client } from 'src/lib/client';
 import { fetchPostById } from 'src/lib/queries';
-import PostTags from 'src/sections/blog/common/post-tags';
+
+import { Post } from 'src/types/post';
+import { IAuthorProps } from 'src/types/author';
 
 interface Props {
   id: string;
+  setAuthor: Dispatch<SetStateAction<IAuthorProps | null>>;
 }
 
 const { projectId, dataset } = client.config();
@@ -74,13 +78,17 @@ const myPortableTextComponents: PortableTextComponents = {
   },
 };
 
-const ChroniquePostBody: React.FC<Props> = ({ id }) => {
+const ChroniquePostBody: React.FC<Props> = ({ id , setAuthor  }) => {
   const [post, setPost] = useState<Post | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedPost = await fetchPostById(id);
+        if (fetchedPost) {
+          setAuthor(fetchedPost.author);
+        }
+        
         setPost(fetchedPost);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -89,14 +97,14 @@ const ChroniquePostBody: React.FC<Props> = ({ id }) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [ id , setAuthor ]);
 
   return (
     <div>
       {post && (
         <>
           <PortableText value={post.body as TypedObject[]} components={myPortableTextComponents} />
-          {post.tag && <PostTags tags={post.tag} />}
+          {/* {post.tag && <PostTags tags={post.tag} />} */}
         </>
       )}
     </div>

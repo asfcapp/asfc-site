@@ -1,6 +1,7 @@
-import { Typography } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { Typography } from '@mui/material';
+
 import { Tag } from 'src/types/post'; // Adjust the import path as needed
 
 // ----------------------------------------------------------------------
@@ -10,7 +11,6 @@ type Props = {
 };
 
 export default function PostTags({ tags }: Props) {
-  console.log(tags);
 
   return (
     <Stack direction="row" alignItems="center" flexWrap="wrap" sx={{ my: 5 }}>

@@ -1,19 +1,19 @@
+import { useState, useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import urlFor from 'src/lib/sanity';
+import { fetchRojData } from 'src/lib/queries';
 
 import Image from 'src/components/image';
-import { fetchRojData } from 'src/lib/queries';
-import { client } from 'src/lib/client';
-import imageUrlBuilder from '@sanity/image-url';
-import { useEffect, useState } from 'react';
+
 import { RojDocument } from 'src/types/roj';
+
 import BlockContentRenderer from './block-content-renderer';
-import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ const RojLandingHero = () => {
             {data?.sectionSubTitle}
           </Typography>
 
-          {<BlockContentRenderer data={data?.sectionDescription} />}
+          <BlockContentRenderer data={data?.sectionDescription} />
         </Grid>
       </Grid>
     </Container>

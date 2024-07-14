@@ -1,4 +1,3 @@
-import { ISocialLinks } from './socials';
 
 // ----------------------------------------------------------------------
 
@@ -6,11 +5,11 @@ export type IAuthorProps = {
   name: string;
   role: string;
   about: string;
+  bio: string;
   quotes: string;
-  avatarUrl: string;
-  verified?: boolean;
-  phoneNumber?: string;
-  ratingNumber?: number;
-  totalReviews?: number;
-  socialLinks?: ISocialLinks;
+  image: string;
+  facebook?: string;
+  linkedin?: string;
+  instagram?: string;
+  website? : string;
 };

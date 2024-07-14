@@ -1,10 +1,9 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { IBlogPostProps } from 'src/types/blog';
+import { Post } from 'src/types/post';
 
 import ChroniquePostItem from './chronique-post-item';
-import { Post } from 'src/types/post';
 
 // ----------------------------------------------------------------------
 

@@ -8,14 +8,14 @@ import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
 
+import urlFor from 'src/lib/sanity';
+
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import { IBlogPostProps } from 'src/types/blog';
+import { Post } from 'src/types/post';
 
 import ChroniquePostTimeBlock from './chronique-post-item-block';
-import { Post } from 'src/types/post';
-import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +28,6 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
   const theme = useTheme();
   const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
   const avatarUrl = post?.author?.image ? urlFor(post?.author?.image)?.url() : null;
-  console.log('id, ', post?._id);
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>

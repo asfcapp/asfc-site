@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Chip from '@mui/material/Chip';
@@ -10,12 +12,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { _socials } from 'src/_mock';
+import urlFor from 'src/lib/sanity';
+import { fetchTags, fetchCategories, fetchRecentPosts } from 'src/lib/queries';
 
 import Iconify from 'src/components/iconify';
 
+import { Post } from 'src/types/post';
+import { Tags } from 'src/types/tags';
 import { IAuthorProps } from 'src/types/author';
-import { IBlogPostProps, IBlogCategoryProps } from 'src/types/blog';
+import { Categories } from 'src/types/categories';
 
 import PostItemMobile from './post-item-mobile';
 import Advertisement, { AdvertisementProps } from '../../advertisement';
@@ -25,54 +30,98 @@ import Advertisement, { AdvertisementProps } from '../../advertisement';
 interface Props extends StackProps {
   author?: IAuthorProps;
   popularTags?: string[];
-  categories?: IBlogCategoryProps[];
   advertisement?: AdvertisementProps;
-  recentPosts?: {
-    list: IBlogPostProps[];
-  };
+ 
 }
 
-export default function PostSidebar({
+const PostSidebar = ({
   author,
-  categories,
   popularTags,
-  recentPosts,
   advertisement,
   sx,
   ...other
-}: Props) {
+}: Props) => {
   const mdUp = useResponsive('up', 'md');
+  const [categories, setCategories] = useState<Categories[]>([]);
+  const [tags, setTags] = useState<Tags[]>([]);
+  const [recentPosts, setRecentPosts] = useState<Post []>([]);
+
+  const avatarUrl = author?.image ? urlFor(author?.image)?.url() : null;
+
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const fetchedCategories = await fetchCategories();
+      setCategories(fetchedCategories);
+    };
+    getCategories();
+  }, []);
+  useEffect(() => {
+    const getTags = async () => {
+      const fetchedTags = await fetchTags();
+      setTags(fetchedTags);
+    };
+    getTags();
+  }, []);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await fetchRecentPosts();
+      setRecentPosts(posts);
+    };
+
+    fetchPosts();
+  }, []);
+
+
 
   const renderAuthor = author && (
     <Stack spacing={2} direction="row" sx={{ mb: { md: 5 } }}>
-      <Avatar src={author.avatarUrl} sx={{ width: 64, height: 64 }} />
-
+      <Avatar src={avatarUrl ?? ''} sx={{ width: 64, height: 64 }} />
+  
       <Stack>
         <Typography variant="h5">{author.name}</Typography>
-
-        <Typography variant="body2" sx={{ mt: 0.5, mb: 2, color: 'text.secondary' }}>
-          {author.role}
-        </Typography>
-
-        <Stack direction="row">
-          {_socials.map((social) => (
-            <IconButton key={social.value}>
-              <Iconify icon={social.icon} sx={{ color: social.color }} />
+  
+        {author.bio && (
+          <Typography variant="body2" sx={{ mt: 0.5, mb: 2, color: 'text.secondary' }}>
+            {author.bio}
+          </Typography>
+        )}
+  
+        <Stack direction="row" spacing={1}>
+          {author.facebook && (
+            <IconButton component="a" href={author.facebook} target="_blank" rel="noopener noreferrer">
+              <Iconify icon="mdi:facebook" sx={{ color: '#3b5998' }} />
             </IconButton>
-          ))}
+          )}
+          {author.linkedin && (
+            <IconButton component="a" href={author.linkedin} target="_blank" rel="noopener noreferrer">
+              <Iconify icon="mdi:linkedin" sx={{ color: '#0077b5' }} />
+            </IconButton>
+          )}
+          {author.instagram && (
+            <IconButton component="a" href={author.instagram} target="_blank" rel="noopener noreferrer">
+              <Iconify icon="mdi:instagram" sx={{ color: '#e1306c' }} />
+            </IconButton>
+          )}
+          {author.website && (
+            <IconButton component="a" href={author.website} target="_blank" rel="noopener noreferrer">
+              <Iconify icon="mdi:web" sx={{ color: 'text.primary' }} />
+            </IconButton>
+          )}
         </Stack>
       </Stack>
     </Stack>
   );
 
-  const renderCategories = categories && (
+  const renderCategories = categories.length > 0 && (
     <Stack spacing={1}>
       <Typography variant="h5" gutterBottom>
         Categories
       </Typography>
 
       {categories.map((category) => (
-        <Stack key={category.label} direction="row" alignItems="center">
+        <Stack key={category._id} direction="row" alignItems="center">
           <Box
             sx={{
               mr: 2,
@@ -83,8 +132,8 @@ export default function PostSidebar({
             }}
           />
 
-          <Link variant="body2" href={category.path} color="inherit">
-            {category.label}
+          <Link variant="body2" href={category.title} color="inherit">
+            {category.title}
           </Link>
         </Stack>
       ))}
@@ -95,8 +144,8 @@ export default function PostSidebar({
     <Stack spacing={3}>
       <Typography variant="h5">Recent Posts</Typography>
 
-      {recentPosts.list.map((post) => (
-        <PostItemMobile key={post.id} post={post} onSiderbar />
+      {recentPosts?.map((post) => (
+        <PostItemMobile key={post._id} post={post} onSiderbar />
       ))}
     </Stack>
   );
@@ -106,8 +155,8 @@ export default function PostSidebar({
       <Typography variant="h5">Popular Tags</Typography>
 
       <Stack direction="row" flexWrap="wrap" spacing={1}>
-        {popularTags.map((tag) => (
-          <Chip key={tag} label={tag} variant="soft" size="small" onClick={() => {}} />
+        {tags.map((tag) => (
+          <Chip key={tag?._id} label={tag?.title} variant="soft" size="small" />
         ))}
       </Stack>
     </Stack>
@@ -142,13 +191,12 @@ export default function PostSidebar({
         {...other}
       >
         {renderCategories}
-
         {renderRecentPosts}
-
         {renderPopularTags}
-
         {advertisement && <Advertisement advertisement={advertisement} />}
       </Stack>
     </>
   );
-}
+};
+
+export default PostSidebar;
