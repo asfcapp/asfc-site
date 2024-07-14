@@ -30,7 +30,7 @@ export default function HomeView() {
     <>
       <Container
         sx={{
-          mt: { xs: 0, md: 15 },
+          mt: { xs: 10, md: 15 },
           pb: 10,
         }}
       >
