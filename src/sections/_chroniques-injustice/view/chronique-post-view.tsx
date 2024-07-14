@@ -11,10 +11,10 @@ import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 import { IAuthorProps } from 'src/types/author';
 
-import PostSidebar from '../../blog/common/post-sidebar';
 import ChroniquePostHero from '../blog/chronique-post-hero';
 import ChroniquePostBody from '../blog/chronique-post-body';
-import PostSocialsShare from '../../blog/common/post-socials-share';
+import PostSocialsShare from 'src/sections/common/post-socials-share';
+import PostSidebar from 'src/sections/common/post-sidebar';
 
 // ----------------------------------------------------------------------
 
