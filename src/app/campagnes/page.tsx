@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------
 
-import RojLandingView from 'src/sections/_roj/view/roj-landing-view';
+import CampagnesView from 'src/sections/_campagnes/view/campagnes-view';
 
 export const metadata = {
   title: 'Marketing: Home',
 };
 
 export default function RojLandingPage() {
-  return <RojLandingView />;
+  return <CampagnesView />;
 }

@@ -2,6 +2,14 @@
 
 import { client } from './client';
 
+export async function fetchHomeData() {
+  const query = `*[_type == "home"][0]{
+  about,
+  aboutdescription,
+  rows,
+  sectionTitle}`;
+  return client.fetch(query);
+}
 export async function fetchRojData() {
   const query = `*[_type == "roj"][0]{
     _id,
@@ -11,26 +19,123 @@ export async function fetchRojData() {
     image,
     sectionTitle,
     sectionSubTitle,
-    sectionDescription
+    sectionDescription,
+    partenaire[]->{
+    _id,
+    photo,
+    name,
+    review
+    }
   }`;
   return client.fetch(query);
 }
 
+export async function fetchCampagnesData() {
+  const query = `*[_type == "campagne"]{
+    _id,
+    title,
+    image,
+    description,
+    _updatedAt,
+    _createdAt,
+    partenaire[]->{
+      _id,
+      photo,
+      name,
+      review
+    },
+    delit[]->{
+      _id,
+      _createdAt,
+      title,
+      "file": pdf.asset->url,
+      photo,
+      description,
+      articleDeLoi{
+        title,
+        description,
+        files[] {
+          asset->{
+            _id,
+            url
+          },
+          originalFilename,
+          size
+        }
+      },
+      explication,
+      dataMaroc,
+      observation,
+      publication
+    }
+  }`;
+  return client.fetch(query);
+}
+
+export async function fetchDelitDataById(delitId: string) {
+  const query = `*[_type == "delit" && _id == $delitId]{
+    _id,
+    _createdAt,
+    title,
+    photo,
+    description,
+    articleDeLoi,
+    explication,
+    dataMaroc,
+    observation,
+    publication{
+      title,
+      policy,
+      etudes,
+      presse[]->{
+        _id,
+        title,
+        slug,
+        author->{
+          _id,
+          name,
+          image{
+            asset->{
+              _id,
+              url
+            }
+          },
+          bio,
+          instagram,
+          linkedin,
+          facebook,
+          website,
+          dateJoined
+        },
+        mainImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        categories[]->{
+          _id,
+          title
+        },
+        publishedAt,
+        body,
+        tag[]->{
+          _id,
+          title
+        }
+      }
+    }
+  }`;
+
+  const params = { delitId };
+  return client.fetch(query, params);
+}
 export async function fetchPartenaires() {
   const query = `*[_type == "partenaire"]{
   photo,
   name,
   review
   }`;
-  return client.fetch(query);
-}
-
-export async function fetchHomeData() {
-  const query = `*[_type == "home"][0]{
-  about,
-  aboutdescription,
-  rows,
-  sectionTitle}`;
   return client.fetch(query);
 }
 
@@ -156,7 +261,6 @@ export async function fetchHomePosts() {
   }`;
   return client.fetch(query);
 }
-
 
 export async function fetchCategories() {
   const query = `*[_type == "category"]{

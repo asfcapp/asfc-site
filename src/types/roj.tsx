@@ -16,12 +16,21 @@ export interface SanityLink {
   _type: string;
   href: string;
 }
-
+export interface File {
+  _type: 'file';
+  asset: {
+    _ref: string;
+  };
+  size?: number;
+  url?: string;
+  title?: string;
+}
 export interface SanityBlock {
   _key: string;
   _type: string;
   style?: string;
   listItem?: string;
+  file : File;
   markDefs?: SanityLink[];
   children: {
     _key: string;

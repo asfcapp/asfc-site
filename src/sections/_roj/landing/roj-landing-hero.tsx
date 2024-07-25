@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -7,29 +7,20 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import urlFor from 'src/lib/sanity';
-import { fetchRojData } from 'src/lib/queries';
 
 import Image from 'src/components/image';
 
 import { RojDocument } from 'src/types/roj';
 
-import BlockContentRenderer from './block-content-renderer';
+import BlockContentRenderer from '../../common/block-content-renderer';
 
 // ----------------------------------------------------------------------
+interface Props {
+  data: RojDocument; // Provide the RojDocument type as a prop
+}
 
-const RojLandingHero = () => {
-  const [data, setData] = useState<RojDocument | null>(null); // Use the RojData type
-
+const RojLandingHero: React.FC<Props> = ({ data }) => {
   const eventImageUrl = data?.image ? urlFor(data?.image)?.url() : null;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedData = await fetchRojData();
-      setData(fetchedData);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <Container
