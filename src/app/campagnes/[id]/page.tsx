@@ -1,6 +1,7 @@
-import DelitPostView from 'src/sections/_campagnes/view/delit-post-view';
 
 // ----------------------------------------------------------------------
+
+import DelitPostView from "src/sections/asfc-sections/_campagnes/view/delit-post-view";
 
 export const metadata = {
   title: 'Chronique injustice',
