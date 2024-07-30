@@ -1,4 +1,5 @@
-import { SanityBlock, SanityImage } from './roj';
+import { SanityBlock } from './roj';
+import { SanityImage } from './sanity';
 
 export interface DelitContent {
   title: string;

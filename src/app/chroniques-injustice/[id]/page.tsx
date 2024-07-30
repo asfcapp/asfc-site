@@ -1,4 +1,4 @@
-import ChroniquePostView from 'src/sections/_chroniques-injustice/view/chronique-post-view';
+import ChroniquePostView from 'src/sections/asfc-sections/_chroniques-injustice/view/chronique-post-view';
 
 // ----------------------------------------------------------------------
 

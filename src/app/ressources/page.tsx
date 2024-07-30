@@ -1,6 +1,7 @@
 // ----------------------------------------------------------------------
 
-import RessourcesLandingView from 'src/sections/_ressources/view/ressources-landing-view';
+import RessourcesLandingView from "src/sections/asfc-sections/_ressources/view/ressources-landing-view";
+
 
 export const metadata = {
   title: 'Marketing: Home',

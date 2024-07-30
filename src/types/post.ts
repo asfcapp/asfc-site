@@ -1,6 +1,7 @@
 // interfaces.ts
 
-import { SanityBlock, SanityImage } from './roj';
+import { SanityBlock } from './roj';
+import { SanityImage } from './sanity';
 
 export interface Author {
   _id: string;

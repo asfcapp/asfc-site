@@ -45,7 +45,7 @@ export default function PresseBlogPosts({ data }: Props) {
           rightButtonProps={{ sx: { right: { xs: 0, md: -40 } } }}
         >
           <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-            {data.map((post) => (
+            {data?.map((post) => (
               <Box
                 key={post._id}
                 sx={{

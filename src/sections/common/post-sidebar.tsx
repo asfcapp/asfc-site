@@ -190,9 +190,9 @@ const PostSidebar = ({
         }}
         {...other}
       >
-        {renderCategories}
+        {/* {renderCategories} */}
         {renderRecentPosts}
-        {renderPopularTags}
+        {/* {renderPopularTags} */}
         {advertisement && <Advertisement advertisement={advertisement} />}
       </Stack>
     </>

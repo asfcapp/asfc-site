@@ -1,16 +1,7 @@
-export interface SanityImage {
-  _type: string;
-  asset: {
-    _ref: string;
-    _type: string;
-  };
-  hotspot?: {
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-  };
-}
+import { SanityImage } from "./sanity";
+import { Partenaire } from "./partenaire";
+
+
 
 export interface SanityLink {
   _type: string;
@@ -46,6 +37,7 @@ export interface RojDocument {
   slug: {
     current: string;
   };
+  partenaire: Partenaire[];
   subtitle: string;
   image: SanityImage;
   sectionTitle: string;

@@ -1,11 +1,12 @@
 // ----------------------------------------------------------------------
 
-import CampagnesView from 'src/sections/_campagnes/view/campagnes-view';
+import { fetchCampagnesData } from 'src/lib/queries';
 
-export const metadata = {
-  title: 'Marketing: Home',
-};
+import CampagnesView from 'src/sections/asfc-sections/_campagnes/view/campagnes-view';
 
-export default function RojLandingPage() {
-  return <CampagnesView />;
+
+export default async  function RojLandingPage() {
+  const data = await fetchCampagnesData();
+
+  return <CampagnesView initialData={data} />;
 }

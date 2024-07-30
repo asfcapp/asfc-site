@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
@@ -71,7 +70,7 @@ export default function PresseBlogItemPost({ post }: Props) {
 
           <Link
             component={RouterLink}
-            href={paths.marketing.post}
+            href={`/campagnes/${post?._id}`}
             variant="h6"
             color="inherit"
             underline="none"

@@ -4,14 +4,23 @@ import { client } from './client';
 
 export async function fetchHomeData() {
   const query = `*[_type == "home"][0]{
-  about,
-  aboutdescription,
-  rows,
-  sectionTitle}`;
+    sectionTitle,
+    about,
+    aboutdescription,
+    rows[] {
+      title,
+      content
+    },
+    seo{
+      metaTitle,
+      metaDescription,
+      keywords
+    }
+  }`;
   return client.fetch(query);
 }
 export async function fetchRojData() {
-  const query = `*[_type == "roj"][0]{
+  const query = `*[_type == "roj"]{
     _id,
     title,
     slug,
@@ -21,12 +30,17 @@ export async function fetchRojData() {
     sectionSubTitle,
     sectionDescription,
     partenaire[]->{
-    _id,
-    photo,
-    name,
-    review
+      _id,
+      photo,
+      name,
+      review
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords,
     }
-  }`;
+  }[0]`;
   return client.fetch(query);
 }
 
@@ -67,6 +81,11 @@ export async function fetchCampagnesData() {
       dataMaroc,
       observation,
       publication
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords,
     }
   }`;
   return client.fetch(query);

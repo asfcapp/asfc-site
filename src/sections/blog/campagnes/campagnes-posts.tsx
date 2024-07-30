@@ -1,20 +1,20 @@
+import { useState, useEffect } from 'react';
 
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import { Box, Container } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
+
+import useMetadata from 'src/hooks/use-metadata';
 
 import urlFor from 'src/lib/sanity';
 
 import Image from 'src/components/image';
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
-import SingleCampagneView from 'src/sections/_campagnes/view/single-campagne-view';
+import SingleCampagneView from 'src/sections/asfc-sections/_campagnes/view/single-campagne-view';
 
 import { Campagne } from 'src/types/campagne';
 
 import CampagnesPostItem from './campagnes-post-item';
-
-// ----------------------------------------------------------------------
 
 type Props = {
   campagnes: Campagne[];
@@ -22,7 +22,6 @@ type Props = {
 
 export default function CampagnesPosts({ campagnes }: Props) {
   const theme = useTheme();
-
   const carousel = useCarousel({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -32,6 +31,23 @@ export default function CampagnesPosts({ campagnes }: Props) {
       sx: { mt: 5 },
     }),
   });
+
+  const [currentCampagne, setCurrentCampagne] = useState(campagnes[0]);
+
+  useEffect(() => {
+    setCurrentCampagne(campagnes[carousel.currentIndex] || {
+      seo: {},
+    });
+  }, [carousel.currentIndex, campagnes]);
+
+  const metadata = {
+    title: currentCampagne.seo?.metaTitle || 'Default Title',
+    description: currentCampagne.seo?.metaDescription || 'Default description',
+    keywords: currentCampagne.seo?.keywords?.join(', '),
+  
+  };
+
+  useMetadata(metadata);
 
   return (
     <>
@@ -94,7 +110,8 @@ export default function CampagnesPosts({ campagnes }: Props) {
         )}
       </Box>
       {campagnes?.map(
-        (campagne, index) => carousel.currentIndex === index && <SingleCampagneView campagne={campagne} />
+        (campagne, index) =>
+          carousel.currentIndex === index && <SingleCampagneView key={campagne._id} campagne={campagne} />
       )}
     </>
   );

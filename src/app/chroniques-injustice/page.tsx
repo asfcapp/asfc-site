@@ -1,4 +1,4 @@
-import ChroniqueLandingView from 'src/sections/_chroniques-injustice/view/chronique-landing-view';
+import ChroniqueLandingView from 'src/sections/asfc-sections/_chroniques-injustice/view/chronique-landing-view';
 
 // ----------------------------------------------------------------------
 
