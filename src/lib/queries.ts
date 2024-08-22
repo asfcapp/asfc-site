@@ -2,6 +2,18 @@
 
 import { client } from './client';
 
+ export default async function fetchCampaignsWithInfractions() {
+  const query = `*[_type == "campagne"] {
+    ...,
+    infractions[] -> {
+      infractionName,
+      briefDescription,
+      infractionImage
+    }
+  }`;
+  }
+}
+
 export async function fetchHomeData() {
   const query = `*[_type == "home"][0]{
     sectionTitle,
