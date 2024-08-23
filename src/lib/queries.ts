@@ -2,18 +2,27 @@
 
 import { client } from './client';
 
- export default async function fetchCampaignsWithInfractions() {
+export async function fetchCampaignsWithInfractions() {
   const query = `*[_type == "campagne"] {
-    ...,
-    infractions[] -> {
-      infractionName,
-      briefDescription,
-      infractionImage
-    }
-  }`;
-  }
+      title,
+      slug,
+      image->
+      description,
+      "infractions": ...(infractions[]-> {
+        infractionName,
+        briefDescription,
+        infractionImage,
+      }),
+      seo->
+    }`;
 }
-
+export async function fetchBlog() {
+  const query = ` *[_type == "blog"] {
+        ...,
+        category,
+        isDisplayedOnHome 
+      } | order(publishedAt desc)`; // Sorts results by publication date in descending order (Commandment: Favor filtered fetches);
+}
 export async function fetchHomeData() {
   const query = `*[_type == "home"][0]{
     sectionTitle,
