@@ -13,7 +13,7 @@ export const CampaignsWithInfractionsQuery =defineQuery( `*[_type == "campagne"]
       }),
       seo->
     }`);
-  // Todo we must other fields of infractions,
+  // !Todo: Must add other fields of infractions,
 export const BlogQuery = defineQuery(` *[_type == "blog"] {
         ...,
         category,
