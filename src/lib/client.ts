@@ -1,10 +1,12 @@
-import { createClient } from 'next-sanity';
+// ./src/sanity/lib/client.ts
+import {createClient} from 'next-sanity'
+
+import {apiVersion, dataset, projectId} from 'src/lib/env'
 
 export const client = createClient({
-  projectId: 'wrseddxi',
-  dataset: 'production',
-  apiVersion: '2024-06-24',
-  useCdn: false,
-  perspective: 'previewDrafts',
-});
+  projectId,
+  dataset,
+  apiVersion, // https://www.sanity.io/docs/api-versioning
+  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+})
 
