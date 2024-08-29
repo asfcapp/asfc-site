@@ -1,7 +1,7 @@
 // lib/queries.ts
 import {defineQuery} from 'next-sanity'
 
-export const CampaignsWithInfractionsQuery =defineQuery( `*[_type == "campagne"] {
+export const CampaignsWithInfractionsQuery =defineQuery(`*[_type == "campagne"] {
       title,
       slug,
       image->
