@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import { Box, Stack, Container, Typography } from '@mui/material';
 
-import { fetchHomePosts } from 'src/lib/queries';
+//import { fetchHomePosts } from 'src/lib/queries';
 
 import { Post } from 'src/types/post';
 
@@ -14,17 +14,17 @@ import FullMapScreen from '../full-map-secreen';
 import FeaturedPosts from '../landing/featured-posts';
 
 // Fetcher function for SWR
-const fetcher = async () => {
-  const fetchedData = await fetchHomePosts();
-  return fetchedData;
-};
+// const fetcher = async () => {
+//   const fetchedData = await fetchHomePosts();
+//   return fetchedData;
+// };
 
 export default function HomeView({ initialData }: { initialData: Post[] }) {
-  const { data, error } = useSWR<Post[]>('home-posts', fetcher, { fallbackData: initialData });
+  // const { data, error } = useSWR<Post[]>('home-posts', fetcher, { fallbackData: initialData });
 
-  if (error) return <div>Failed to load posts</div>;
-  if (!data) return <div>Loading...</div>;
-
+  // if (error) return <div>Failed to load posts</div>;
+  // if (!data) return <div>Loading...</div>;
+  const data = initialData;
   return (
     <>
       <Container

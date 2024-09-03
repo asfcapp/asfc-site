@@ -5,10 +5,8 @@
   "description": "Next & TypeScript",
   "private": true,
   "scripts": {
-    "predev": "yarn typegen",
     "dev": "next dev -p 8002",
     "start": "next start -p 8002",
-    "prebuild": "yarn typegen",
     "build": "next build",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
@@ -19,8 +17,7 @@
     "re:build-npm": "npm run rm:all && npm install && npm run build",
     "dev:ts": "yarn dev & yarn ts:watch",
     "ts": "tsc --noEmit --incremental",
-    "ts:watch": "yarn ts --watch",
-    "typegen": "sanity schema extract --path=src/lib/extract.json && sanity typegen generate"
+    "ts:watch": "yarn ts --watch"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
