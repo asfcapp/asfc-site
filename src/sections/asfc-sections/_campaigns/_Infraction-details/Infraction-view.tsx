@@ -52,7 +52,7 @@ export default function InfractionView({ infraction }: Props) {
         links={[
           { name: 'Home', href: '/' },
           { name: 'Campaign', href: paths.marketing.caseStudies },
-          { name: infraction. },
+          { name: infraction },
         ]}
       />
 
