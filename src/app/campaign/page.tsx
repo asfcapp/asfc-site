@@ -4,12 +4,9 @@ import { PARTNERS_QUERY, CAMPAIGNS_WITH_INFRACTIONS_QUERY } from 'src/lib/querie
 
 import CampaignView from 'src/sections/asfc-sections/_campaigns/view/campaigns-view';
 
-export default async function RojLandingPage() {
+export default async function CampaignPage() {
   const CampaignData = await sanityFetch({ query: CAMPAIGNS_WITH_INFRACTIONS_QUERY });
-  const PartnerData = await sanityFetch({ query: PARTNERS_QUERY });
-  const PartnerCampaignData = PartnerData.filter(
-    (partner: any) => partner.partnerType[0] === 'Campagne'
-  );
-
-  return <CampaignView campaignData={CampaignData} partnerData={PartnerCampaignData} />;
+  const partnerType = 'Campagne'; // This should be dynamic
+  const PartnerData = await sanityFetch({ query: PARTNERS_QUERY, params: { partnerType } });
+  return <CampaignView campaignData={CampaignData} partnerData={PartnerData} />;
 }

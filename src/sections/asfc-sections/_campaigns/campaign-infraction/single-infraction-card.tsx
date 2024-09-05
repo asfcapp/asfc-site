@@ -47,7 +47,12 @@ export default function SingleInfractionCard({ infraction }: Props) {
       >
         {/* <PostTimeBlock createdAt={fDate(post.createdAt)} duration={post.duration} /> */}
 
-        <Link component={RouterLink} href="" color="inherit" variant="h5">
+        <Link
+          component={RouterLink}
+          href={`/campaign/${infraction.slug}`}
+          color="inherit"
+          variant="h5"
+        >
           {infraction.infractionName}
         </Link>
 

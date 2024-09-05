@@ -13,12 +13,17 @@ export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagn
         briefDescription,
         infractionImage->,
         lawArticle,
-        moroccanData
+        explanation, 
+        moroccanData,
+        observation,
+        publication
+
 },
       seo->
     }`);
 export const BLOG_QUERY = defineQuery(` *[_type == "blog"] {
         ...,
+        seo->,
         category,
         isDisplayedOnHome
       } | order(publishedAt desc)`);
@@ -27,20 +32,22 @@ export const BLOG_QUERY = defineQuery(` *[_type == "blog"] {
 // isDisplayedOnHome Indicates if the blog should be displayed on the homepage
 // order(publishedAt desc)  Sorts results by publication date in descending order
 
-export const PARTNERS_QUERY = defineQuery(`*[_type == "partner"] {
-        _id,
-        name,
-        description,
-        partnerType,
-        image->,
-        socialLink[]->{
-          platform,
-          url,
-          icon->{
-            iconIdentifier
-          }
+export const PARTNERS_QUERY = defineQuery(`*[_type == "partner" && $partnerType in partnerType] {
+    _id,
+    name,
+    description,
+    partnerType,
+    image->,
+      socialLink[]->{
+        platform,
+        url,
+        icon->{
+          conIdentifier
         }
-      } | order(name)`);
+      }
+  } | order(name)
+`);
+
 // name Retrieves the name of the partner
 // description Retrieves the description of the partner
 // partnerType Retrieves the type of the partner
