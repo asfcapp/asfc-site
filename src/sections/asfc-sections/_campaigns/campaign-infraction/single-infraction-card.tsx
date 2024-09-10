@@ -49,7 +49,7 @@ export default function SingleInfractionCard({ infraction }: Props) {
 
         <Link
           component={RouterLink}
-          href={`/campaign/${infraction.slug}`}
+          href={paths.asfc.campaign + '/' + (infraction.infractionSlug?.current || '')}
           color="inherit"
           variant="h5"
         >

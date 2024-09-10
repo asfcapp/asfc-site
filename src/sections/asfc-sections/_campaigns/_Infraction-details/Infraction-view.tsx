@@ -34,6 +34,7 @@ export default function InfractionView({ infraction }: Props) {
       sx={{
         overflow: 'hidden',
         pt: 5,
+        mt: 10,
         pb: { xs: 10, md: 15 },
       }}
     >
@@ -50,9 +51,9 @@ export default function InfractionView({ infraction }: Props) {
       <CustomBreadcrumbs
         sx={{ my: 5 }}
         links={[
-          { name: 'Home', href: '/' },
-          { name: 'Campaign', href: paths.marketing.caseStudies },
-          { name: infraction },
+          { name: 'Home', href: paths.asfc.root },
+          { name: 'Campaign', href: paths.asfc.campaign },
+          { name: infraction.infractionName },
         ]}
       />
 

@@ -1,23 +1,23 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { Post } from 'src/types/post';
+import { IBlogPostProps } from 'src/types/blog';
 
-import ChroniquePostItem from './chronique-post-item';
+import PostItem from './';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  posts: Post[];
+  posts: IBlogPostProps[];
 };
 
-export default function ChroniquePosts({ posts }: Props) {
+export default function TravelFeaturedPosts({ posts }: Props) {
   const featuredPost = posts[0];
 
   return (
     <Container
       sx={{
-        mt: { xs: 0, md: 5 },
+        pt: { xs: 0, md: 5 },
         pb: 10,
       }}
     >
@@ -31,7 +31,7 @@ export default function ChroniquePosts({ posts }: Props) {
           },
         }}
       >
-        <ChroniquePostItem post={featuredPost} largePost />
+        <PostItem post={featuredPost} largePost />
 
         <Box
           sx={{
@@ -44,7 +44,7 @@ export default function ChroniquePosts({ posts }: Props) {
           }}
         >
           {posts.slice(1, 5).map((post) => (
-            <ChroniquePostItem key={post._id} post={post} />
+            <PostItem key={post.id} post={post} />
           ))}
         </Box>
       </Box>

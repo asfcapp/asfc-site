@@ -24,9 +24,6 @@ export default function CampaignView({
         <CampaignInfraction infractions={campaignData[0].infractions} />
       )}
       {partnerData && <CampaignPartner partners={partnerData} />}
-      {campaignData[0].infractions[4] && (
-        <InfractionView infraction={campaignData[0].infractions[4]} />
-      )}
       {/* this campaignData[0] is used only because we have one campaign if we have more we should use state management library  */}
     </>
   );

@@ -3,7 +3,7 @@ import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { IBlogPostProps } from 'src/types/blog';
 
-import ComunitySpacePostItem from './community-space-post-item';
+import PostItem from './single-blog-post';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ type Props = {
   posts: IBlogPostProps[];
 };
 
-export default function CommunitySpace({ posts }: Props) {
+export default function TravelPosts({ posts }: Props) {
   return (
     <>
       <Box
@@ -20,13 +20,13 @@ export default function CommunitySpace({ posts }: Props) {
           display: 'grid',
           rowGap: { xs: 4, md: 5 },
           gridTemplateColumns: {
-            xs: 'repeat(    1, 1fr)',
+            xs: 'repeat(1, 1fr)',
             sm: 'repeat(2, 1fr)',
           },
         }}
       >
         {posts.slice(0, 8).map((post) => (
-          <ComunitySpacePostItem key={post.id} post={post} />
+          <PostItem key={post.id} post={post} />
         ))}
       </Box>
 

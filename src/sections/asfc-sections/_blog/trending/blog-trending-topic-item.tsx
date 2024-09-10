@@ -40,7 +40,7 @@ type Props = {
   };
 };
 
-export default function AllChroniqueItem({ topic }: Props) {
+export default function TravelTrendingTopicItem({ topic }: Props) {
   const theme = useTheme();
 
   return (

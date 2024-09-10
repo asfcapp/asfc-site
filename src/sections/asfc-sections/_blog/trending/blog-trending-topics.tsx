@@ -10,7 +10,7 @@ import { _mock } from 'src/_mock';
 
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
-import AllChroniqueItem from './all-chronique-item';
+import TopicItem from './blog-trending-topic-item';
 
 // ----------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ export const TOPICS = [...Array(8)].map((_, index) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AllChronique() {
+export default function TravelTrendingTopics() {
   const theme = useTheme();
 
   const mdUp = useResponsive('up', 'md');
@@ -68,14 +68,14 @@ export default function AllChronique() {
             mb: { xs: 8, md: 10 },
           }}
         >
-          <Typography variant="h3">Toutes les chroniques</Typography>
+          <Typography variant="h3">Trending Topics</Typography>
 
           {mdUp && <CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} spacing={2} />}
         </Stack>
 
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
           {TOPICS.map((topic) => (
-            <AllChroniqueItem key={topic.id} topic={topic} />
+            <TopicItem key={topic.id} topic={topic} />
           ))}
         </Carousel>
 

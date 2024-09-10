@@ -4,35 +4,32 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
 
-import urlFor from 'src/lib/sanity';
-
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import { Post } from 'src/types/post';
+import { IBlogPostProps } from 'src/types/blog';
 
-import ChroniquePostTimeBlock from './chronique-post-item-block';
+import PostTimeBlock from '../common/post-time-block';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: Post;
+  post: IBlogPostProps;
   largePost?: boolean;
 };
 
-export default function ChroniquePostItem({ post, largePost }: Props) {
+export default function TravelFeaturedPostItem({ post, largePost }: Props) {
   const theme = useTheme();
-  const eventImageUrl = post?.mainImage ? urlFor(post?.mainImage)?.url() : null;
-  const avatarUrl = post?.author?.image ? urlFor(post?.author?.image)?.url() : null;
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
       <Image
-        src={eventImageUrl || ''}
+        src={post.coverUrl}
         alt={post.title}
         ratio="1/1"
         overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
@@ -53,12 +50,13 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
           }),
         }}
       >
-        <ChroniquePostTimeBlock
-          createdAt={fDate(post.publishedAt)}
+        <PostTimeBlock
+          createdAt={fDate(post.createdAt)}
+          duration={post.duration}
           sx={{ color: 'inherit', opacity: 0.72 }}
         />
 
-        <Link component={RouterLink} href={`/chroniques-injustice/${post?._id}`} color="inherit">
+        <Link component={RouterLink} href={paths.travel.post} color="inherit">
           <TextMaxLine
             sx={{
               typography: 'h6',
@@ -71,9 +69,11 @@ export default function ChroniquePostItem({ post, largePost }: Props) {
           </TextMaxLine>
         </Link>
 
+        {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>{post.description}</TextMaxLine>}
+
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
           <Avatar
-            src={avatarUrl ?? ''}
+            src={post.author.avatarUrl}
             sx={{
               mr: 1,
               width: 32,

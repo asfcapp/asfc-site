@@ -9,6 +9,7 @@ export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagn
       description,
       infractions[]-> {
         _id,
+        infractionSlug,
         infractionName,
         briefDescription,
         infractionImage->,

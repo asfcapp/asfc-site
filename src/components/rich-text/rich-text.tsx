@@ -88,7 +88,7 @@ const RichText = ({ content }: props) => (
         figure: ({ value }) => (
           <Box sx={{ marginBottom: 2 }}>
             <Image
-              src={value.image ? urlFor(value.image.asset)?.url() : ''}
+              src={value?.image ? urlFor(value?.image.asset)?.url() : ''}
               alt={value.image.alt || ''}
               layout="responsive"
               width={800}
