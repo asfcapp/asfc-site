@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
@@ -10,14 +12,16 @@ import AccordionSummary, { accordionSummaryClasses } from '@mui/material/Accordi
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { _faqs } from 'src/_mock';
-
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function MarketingLandingFaqs() {
+type props = {
+  roj: any;
+};
+
+export default function RojFaqs({ roj }: props) {
   const mdUp = useResponsive('up', 'md');
 
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -28,6 +32,8 @@ export default function MarketingLandingFaqs() {
     },
     []
   );
+  const Faqs = roj.faqs;
+  console.log('faqs', Faqs);
 
   return (
     <Container
@@ -46,9 +52,9 @@ export default function MarketingLandingFaqs() {
             <Typography variant="h2">Frequently Asked Questions</Typography>
           </Stack>
 
-          {_faqs.map((faq) => (
+          {Faqs.map((faq: any) => (
             <Accordion
-              key={faq.id}
+              key={faq._id}
               expanded={expanded === faq.question}
               onChange={handleChangeExpanded(faq.question)}
             >

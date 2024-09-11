@@ -1,19 +1,19 @@
+'use client';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { IBlogPostProps } from 'src/types/blog';
-
-import PostItem from './';
+import SingleBlogItem from './blog-featured-single-post';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  posts: IBlogPostProps[];
+  blogs: any;
 };
 
-export default function TravelFeaturedPosts({ posts }: Props) {
-  const featuredPost = posts[0];
-
+export default function BlogFeaturedPosts({ blogs }: Props) {
+  const featuredBlog = blogs[0];
+  console.log('featuredBlog', featuredBlog);
   return (
     <Container
       sx={{
@@ -31,7 +31,7 @@ export default function TravelFeaturedPosts({ posts }: Props) {
           },
         }}
       >
-        <PostItem post={featuredPost} largePost />
+        <SingleBlogItem blog={featuredBlog} largePost />
 
         <Box
           sx={{
@@ -43,8 +43,8 @@ export default function TravelFeaturedPosts({ posts }: Props) {
             },
           }}
         >
-          {posts.slice(1, 5).map((post) => (
-            <PostItem key={post.id} post={post} />
+          {blogs.slice(1, 5).map((blog: any) => (
+            <SingleBlogItem key={blog._id} blog={blog} />
           ))}
         </Box>
       </Box>

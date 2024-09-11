@@ -23,11 +23,26 @@ export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagn
       seo->
     }`);
 export const BLOG_QUERY = defineQuery(` *[_type == "blog"] {
-        ...,
-        seo->,
-        category,
-        isDisplayedOnHome
-      } | order(publishedAt desc)`);
+  title,
+  slug,
+  body,
+  description,
+  illustrations[]->{
+    isCoverImage,
+    isFeaturedImage,
+    caption,
+    imageAsset->{
+    alt,
+    credit,
+    image,
+  },
+  },
+  seo->,
+  category,
+  readingTime,
+  publishedAt,
+  isDisplayedOnHome
+} | order(publishedAt desc)`);
 //  ..., Includes all fields of the "blog" document
 //  category, Retrieves the category of the blog
 // isDisplayedOnHome Indicates if the blog should be displayed on the homepage
@@ -59,19 +74,17 @@ export const PARTNERS_QUERY = defineQuery(`*[_type == "partner" && $partnerType 
 // icon Retrieves the icon of the social media link that is going to be used by iconify
 // order(name) Sorts results by name in ascending order
 
-export const ROJ_QUERY = defineQuery(`*[_type == "roj"]{
+export const ROJ_QUERY = defineQuery(`*[_type == "roj"][0]{
         _id,
-        title,
         slug,
-        description,
-        body,
-        imageRoj->,
-	      seo->
+        imageRoj->{...},
+        faqs,
+        about->{...},
+	      seo->{...}
       }`);
-// title Retrieves the title of the Roj
+// _id Retrieves the ID of the Roj
 // slug Retrieves the slug of the Roj
-// description Retrieves the description of the Roj
-// body Retrieves the body of the Roj
+// about Retrieves the About Us information of the Roj
 // imageRoj Retrieves the image of the Roj
 // seo Retrieves the SEO information of the Roj
 export const TAGS_QUERY = defineQuery(` *[_type == "tag"] {

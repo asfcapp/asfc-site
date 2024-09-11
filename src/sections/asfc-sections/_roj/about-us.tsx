@@ -7,55 +7,41 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import urlFor from 'src/lib/sanity';
-import { fShortenNumber } from 'src/utils/format-number';
 
 import Image from 'src/components/image';
-import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
-
-const ROWS = [
-  {
-    label: 'projects',
-    total: 20,
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-  {
-    label: 'Happy clients',
-    total: 32000,
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-  {
-    label: 'years of experience',
-    total: 20,
-    content: 'Praesent turpis. Praesent blandit laoreet nibh. Nunc nonummy metus.',
-  },
-];
 
 // ----------------------------------------------------------------------
 type props = {
-    aboutUs : any,
-    roj : any
+  roj: any;
+};
 
-}
-export default function MarketingLandingAbout({aboutUs ,roj }:props ) {
+export default function AboutUs({ roj }: props) {
+  const ourValues = [
+    { key: 'Mission', value: roj?.about.mission },
+    { key: 'Vision', value: roj?.about.vision },
+    { key: 'Values', value: roj?.about.values },
+  ];
   return (
     <Container
       sx={{
         py: { xs: 5, md: 10 },
+        mt: { xs: 5 },
       }}
     >
-      {/* must be fetched from sanity and place here using urlFor  */}
-      <Image
-        alt="landing about"
-        src={roj?.imageRoj.image.asset ? (urlFor(roj.imageRoj.image.asset)?.url() ?? '') : ''}
-        ratio="16/9"
+      <Box
+        component="img"
+        alt={roj.imageRoj?.image.alt}
+        src={roj.imageRoj?.image.asset ? (urlFor(roj.imageRoj.image.asset)?.url() ?? '') : ''}
         sx={{
           borderRadius: 1.5,
           mb: { xs: 5, md: 10 },
+          width: '100%', // Add width and height as needed
+          objectFit: 'cover', // For responsive image aspect ratio
+          aspectRatio: '16/9', // Maintain the 16:9 ratio
         }}
       />
-
       <Grid
         container
         columnSpacing={{ xs: 0, md: 3 }}
@@ -69,21 +55,13 @@ export default function MarketingLandingAbout({aboutUs ,roj }:props ) {
             textAlign: { xs: 'center', md: 'right' },
           }}
         >
-          {/* must be static */}
-          <Typography component="div" variant="overline" sx={{ color: 'text.disabled' }}>
+          <Typography component="h1" variant="overline" sx={{ color: 'text.disabled' }}>
             About us
           </Typography>
-          {/* must be static presentation du Roj  */}
           <Typography variant="h2" sx={{ my: 3 }}>
-            Who We Are
+            {roj?.about.title}
           </Typography>
-          {/* must be fetched from sanity an pass it as a props  and take the description of Roj from props  */}
-          <Typography sx={{ color: 'text.secondary' }}>
-            In hac habitasse platea dictumst. Aliquam lobortis. Lorem ipsum dolor sit amet,
-            consectetuer adipiscing elit. In dui magna, posuere eget, vestibulum et, tempor auctor,
-            justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
-            turpis egestas.
-          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>{roj?.about.description}</Typography>
           {/* <Button
             size="large"
             color="inherit"
@@ -97,34 +75,30 @@ export default function MarketingLandingAbout({aboutUs ,roj }:props ) {
 
         <Grid xs={12} md={6}>
           <Stack spacing={5}>
-            {ROWS.map((row) => (
+            {ourValues.map((value) => (
               <Stack
-                key={row.label}
+                key={value.key}
                 direction="row"
                 alignItems="center"
                 divider={
                   <Divider
                     flexItem
                     orientation="vertical"
-                    sx={{ ml: 3, mr: 5, borderStyle: 'dashed' }}
+                    sx={{ ml: 10, mr: 5, borderStyle: 'dashed' }}
                   />
                 }
               >
                 <Stack spacing={1} sx={{ width: 1, maxWidth: 100 }}>
-                  {/* <Stack direction="row">
-                    {/* <Typography variant="h2">{fShortenNumber(row.total)}</Typography>  
+                  <Stack direction="row">
+                    <Typography variant="h2">{value.key}</Typography>
                     <Box component="span" sx={{ color: 'primary.main', typography: 'h4' }}>
                       +
                     </Box>
-                  </Stack> */}
-                  {/* for this project we don't have any numbers but for latter ones maybe we will do  */}
-                  <Typography variant="overline" sx={{ color: 'text.disabled' }}>
-                    {row.label}
-                  </Typography>
+                  </Stack>
                 </Stack>
 
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {row.content}
+                  {value.value}
                 </Typography>
               </Stack>
             ))}
