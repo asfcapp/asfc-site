@@ -74,7 +74,7 @@ export default function TravelLatestPosts({ posts }: Props) {
               mdUp ? (
                 <PostItem key={post.id} post={post} />
               ) : (
-                <PostItemMobile key={post.id} post={post} />
+                <PostItemMobile key={post.id} blog={post} />
               )
             )}
         </Box>
