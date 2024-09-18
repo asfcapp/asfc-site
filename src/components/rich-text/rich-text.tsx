@@ -86,14 +86,13 @@ const RichText = ({ content }: props) => (
       // Custom rendering for images (handling Sanity image asset references)
       types: {
         figure: ({ value }) => (
-          <Box sx={{ marginBottom: 2 }}>
+          <Box sx={{ marginBottom: 2, borderRadius: 2 }}>
             <Image
-              src={value?.image ? urlFor(value?.image.asset)?.url() : ''}
+              src={value?.image ? (urlFor(value?.image.asset)?.url() ?? '') : ''}
               alt={value.image.alt || ''}
               layout="responsive"
               width={800}
               height={600}
-              sx={{ borderRadius: 2 }}
             />
           </Box>
         ),
