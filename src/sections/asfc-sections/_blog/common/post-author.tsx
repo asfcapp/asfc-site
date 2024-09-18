@@ -4,11 +4,9 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
-import { _socials } from 'src/_mock';
+import urlFor from 'src/lib/sanity';
 
 import Iconify from 'src/components/iconify';
-
-import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 

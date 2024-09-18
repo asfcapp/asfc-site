@@ -47,7 +47,7 @@ export default function PostItemMobile({ blog, onSiderbar }: Props) {
       <Stack spacing={onSiderbar ? 0.5 : 1}>
         <Link
           component={RouterLink}
-          href={paths.asfc.chronique_injustice + '/' + blog?.slug?.current || ''}
+          href={`${paths.asfc.chronique_injustice}/${blog?.slug?.current || ''}`}
           color="inherit"
         >
           <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{blog?.title}</TextMaxLine>

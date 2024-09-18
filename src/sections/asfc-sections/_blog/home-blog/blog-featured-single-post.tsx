@@ -34,7 +34,7 @@ export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
       {coverImage && (
         <Image
-          src={urlFor(coverImage.imageAsset.image.asset).url() ?? ''}
+          src={urlFor(coverImage?.imageAsset?.image?.asset)?.url() ?? ''}
           alt={blog.title}
           ratio="1/1"
           overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
@@ -64,7 +64,7 @@ export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
 
         <Link
           component={RouterLink}
-          href={paths.asfc.chronique_injustice + '/' + blog.slug?.current || ''}
+          href={`${paths.asfc.chronique_injustice}/${blog?.slug?.current || ''}`}
           color="inherit"
         >
           <TextMaxLine

@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
@@ -14,8 +13,8 @@ import urlFor from 'src/lib/sanity';
 
 import Iconify from 'src/components/iconify';
 
-import { IAuthorProps } from 'src/types/author';
-import { IBlogPostProps, IBlogCategoryProps } from 'src/types/blog';
+// import { IAuthorProps } from 'src/types/author';
+// import { IBlogPostProps, IBlogCategoryProps } from 'src/types/blog';
 
 import PostItemMobile from './post-item-mobile';
 

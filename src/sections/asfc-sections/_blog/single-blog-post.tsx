@@ -28,7 +28,7 @@ export default function SingleBlogPost({ blog }: Props) {
     <Stack spacing={2.5}>
       {coverImage && (
         <Image
-          src={urlFor(coverImage.imageAsset.image.asset).url() ?? ''}
+          src={urlFor(coverImage?.imageAsset?.image?.asset)?.url() ?? ''}
           alt={blog.title}
           ratio="1/1"
           sx={{ borderRadius: 2 }}
@@ -40,7 +40,7 @@ export default function SingleBlogPost({ blog }: Props) {
 
         <Link
           component={RouterLink}
-          href={paths.asfc.chronique_injustice + '/' + blog.slug?.current || ''}
+          href={`${paths.asfc.chronique_injustice}/${blog?.slug?.current || ''}`}
           color="inherit"
         >
           <TextMaxLine variant="h5" persistent>

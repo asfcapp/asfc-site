@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 
-import { _tags, _mock, _categories, _travelPosts } from 'src/_mock';
+import { _tags } from 'src/_mock';
 
 import RichText from 'src/components/rich-text/rich-text';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';

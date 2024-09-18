@@ -1,19 +1,12 @@
 'use client';
 
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
+import { Typography } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import { RouterLink } from 'src/routes/components';
-
-import { fDate } from 'src/utils/format-time';
+import urlFor from 'src/lib/sanity';
 
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import urlFor from 'src/lib/sanity';
-
-import { Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

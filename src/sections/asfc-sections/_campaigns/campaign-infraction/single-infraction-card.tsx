@@ -2,16 +2,14 @@
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
-import { fDate } from 'src/utils/format-time';
+import urlFor from 'src/lib/sanity';
 
 import Image from 'src/components/image';
-import urlFor from 'src/lib/sanity';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +47,7 @@ export default function SingleInfractionCard({ infraction }: Props) {
 
         <Link
           component={RouterLink}
-          href={paths.asfc.campaign + '/' + (infraction.infractionSlug?.current || '')}
+          href={`${paths.asfc.campaign}/${infraction?.infractionSlug?.current || ''}`}
           color="inherit"
           variant="h5"
         >

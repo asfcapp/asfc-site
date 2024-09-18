@@ -4,9 +4,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import urlFor from 'src/lib/sanity';
+
 import Image from 'src/components/image';
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
-import urlFor from 'src/lib/sanity'; // Renamed import statement
 
 import CampaignCoverItem from './campaign-cover-item'; // Renamed import statement
 

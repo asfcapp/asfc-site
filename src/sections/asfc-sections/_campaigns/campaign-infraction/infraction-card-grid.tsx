@@ -2,10 +2,7 @@
 
 import Masonry from '@mui/lab/Masonry';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import { Container, Typography } from '@mui/material';
-
-import Iconify from 'src/components/iconify';
 
 import SingleInfractionCard from './single-infraction-card';
 

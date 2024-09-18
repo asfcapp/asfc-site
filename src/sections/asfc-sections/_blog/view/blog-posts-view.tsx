@@ -1,11 +1,11 @@
 'use client';
 
-import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Typography from '@mui/material/Typography';
 
-import { _tags, _mock, _categories, _travelPosts } from 'src/_mock';
+import { _tags } from 'src/_mock';
 
 import BlogPosts from '../blog-posts ';
 import PostSidebar from '../common/post-sidebar';

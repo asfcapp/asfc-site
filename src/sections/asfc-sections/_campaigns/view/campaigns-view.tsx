@@ -1,14 +1,10 @@
 // import { fetchCampagnesData } from 'src/lib/queries';
 
-import CampaignCover from 'src/sections/asfc-sections/_campaigns/campaign-cover/campaign-cover-carousel';
 import CampaignPartner from 'src/sections/asfc-sections/_campaigns/campaign-partner/partners-carousel';
+import CampaignCover from 'src/sections/asfc-sections/_campaigns/campaign-cover/campaign-cover-carousel';
+
 import CampaignInfraction from '../campaign-infraction/infraction-card-grid';
-import InfractionView from '../_Infraction-details/Infraction-view';
-// ----------------------------------------------------------------------
-// const fetcher = async () => {
-//   const fetchedData = await fetchCampagnesData();
-//   return fetchedData;
-// };
+
 export default function CampaignView({
   campaignData,
   partnerData,

@@ -16,8 +16,6 @@ import { bgGradient } from 'src/theme/css';
 
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
-import { ITeamMemberProps } from 'src/types/team';
-
 import SinglePartnerItem from './single-partner-item';
 
 // ----------------------------------------------------------------------

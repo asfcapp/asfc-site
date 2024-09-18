@@ -1,12 +1,8 @@
 'use client';
 
-import useSWR from 'swr';
-
 import { Box, Stack, Container, Typography } from '@mui/material';
 
-//import { fetchHomePosts } from 'src/lib/queries';
-
-import { Post } from 'src/types/post';
+// import { fetchHomePosts } from 'src/lib/queries';
 
 import HomeAbout from '../home-about';
 import ColorMap from '../color-mapping';
@@ -19,7 +15,7 @@ import FeaturedPosts from '../landing/featured-posts';
 //   return fetchedData;
 // };
 
-export default function HomeView({ initialData }: { initialData: Post[] }) {
+export default function HomeView({ initialData }: { initialData: any }) {
   // const { data, error } = useSWR<Post[]>('home-posts', fetcher, { fallbackData: initialData });
 
   // if (error) return <div>Failed to load posts</div>;
