@@ -10,7 +10,7 @@ import TextMaxLine from 'src/components/text-max-line';
 
 import PostTimeBlock from 'src/sections/common/post-time-block';
 
-import { Campagne } from 'src/types/campagne';
+import { Campagne } from 'src/types/campaign';
 
 // ----------------------------------------------------------------------
 
@@ -19,7 +19,6 @@ type Props = {
 };
 
 export default function CampagnesPostItem({ campagne }: Props) {
-  
   const image = campagne?.image ? urlFor(campagne?.image)?.url() : null;
 
   return (

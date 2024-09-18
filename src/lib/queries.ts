@@ -1,297 +1,127 @@
 // lib/queries.ts
+import { defineQuery } from 'next-sanity';
 
-import { client } from './client';
-
-export async function fetchHomeData() {
-  const query = `*[_type == "home"][0]{
-    sectionTitle,
-    about,
-    aboutdescription,
-    rows[] {
-      title,
-      content
-    },
-    seo{
-      metaTitle,
-      metaDescription,
-      keywords
-    }
-  }`;
-  return client.fetch(query);
-}
-export async function fetchRojData() {
-  const query = `*[_type == "roj"]{
-    _id,
-    title,
-    slug,
-    subtitle,
-    image,
-    sectionTitle,
-    sectionSubTitle,
-    sectionDescription,
-    partenaire[]->{
+export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagne"] {
       _id,
-      photo,
       name,
-      review
-    },
-    seo {
-      metaTitle,
-      metaDescription,
-      keywords,
-    }
-  }[0]`;
-  return client.fetch(query);
-}
-
-export async function fetchCampagnesData() {
-  const query = `*[_type == "campagne"]{
-    _id,
-    title,
-    image,
-    description,
-    _updatedAt,
-    _createdAt,
-    partenaire[]->{
-      _id,
-      photo,
-      name,
-      review
-    },
-    delit[]->{
-      _id,
-      _createdAt,
-      title,
-      "file": pdf.asset->url,
-      photo,
+      slug,
+      image->,
       description,
-      articleDeLoi{
-        title,
-        description,
-        files[] {
-          asset->{
-            _id,
-            url
-          },
-          originalFilename,
-          size
-        }
-      },
-      explication,
-      dataMaroc,
-      observation,
-      publication
-    },
-    seo {
-      metaTitle,
-      metaDescription,
-      keywords,
-    }
-  }`;
-  return client.fetch(query);
-}
+      infractions[]-> {
+        _id,
+        slug,
+        infractionName,
+        briefDescription,
+        infractionImage->,
+        lawArticle,
+        explanation, 
+        moroccanData,
+        observation,
+        publication
 
-export async function fetchDelitDataById(delitId: string) {
-  const query = `*[_type == "delit" && _id == $delitId]{
+},
+      seo->
+    }`);
+export const BLOG_QUERY = defineQuery(`*[_type == "blog"] {
+  _id,
+  title,
+  slug,
+  body,
+  description,
+  illustrations[]->{
+    isCoverImage,
+    isFeaturedImage,
+    caption,
+    imageAsset->{
+    alt,
+    credit,
+    image,
+  },
+  },
+  seo->,
+  category,
+  readingTime,
+  publishedAt,
+  author->{
+    ...,
+    image->{
+      ...,
+      imageAsset->
+    }
+  },
+  isDisplayedOnHome
+} | order(publishedAt desc)`);
+//  ..., Includes all fields of the "blog" document
+//  category, Retrieves the category of the blog
+// isDisplayedOnHome Indicates if the blog should be displayed on the homepage
+// order(publishedAt desc)  Sorts results by publication date in descending order
+
+export const PARTNERS_QUERY = defineQuery(`*[_type == "partner" && $partnerType in partnerType] {
     _id,
-    _createdAt,
-    title,
-    photo,
+    name,
     description,
-    articleDeLoi,
-    explication,
-    dataMaroc,
-    observation,
-    publication{
-      title,
-      policy,
-      etudes,
-      presse[]->{
+    partnerType,
+    image->,
+      socialLink[]->{
+        platform,
+        url,
+        icon->{
+          conIdentifier
+        }
+      }
+  } | order(name)
+`);
+
+// name Retrieves the name of the partner
+// description Retrieves the description of the partner
+// partnerType Retrieves the type of the partner
+// image Retrieves the image of the partner
+// socialLink Retrieves the social media links of the partner
+// platform Retrieves the platform of the social media link
+// url Retrieves the URL of the social media link
+// icon Retrieves the icon of the social media link that is going to be used by iconify
+// order(name) Sorts results by name in ascending order
+
+export const ROJ_QUERY = defineQuery(`*[_type == "roj"][0]{
+        _id,
+        slug,
+        imageRoj->{...},
+        faqs,
+        about->{...},
+	      seo->{...}
+      }`);
+// _id Retrieves the ID of the Roj
+// slug Retrieves the slug of the Roj
+// about Retrieves the About Us information of the Roj
+// imageRoj Retrieves the image of the Roj
+// seo Retrieves the SEO information of the Roj
+export const TAGS_QUERY = defineQuery(` *[_type == "tag"] {
         _id,
         title,
         slug,
-        author->{
-          _id,
-          name,
-          image{
-            asset->{
-              _id,
-              url
-            }
-          },
-          bio,
-          instagram,
-          linkedin,
-          facebook,
-          website,
-          dateJoined
-        },
-        mainImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        categories[]->{
-          _id,
-          title
-        },
-        publishedAt,
-        body,
-        tag[]->{
-          _id,
-          title
-        }
-      }
-    }
-  }`;
+        description
+      } | order(title)`);
+// title Retrieves the title of the tag
+// slug Retrieves the slug of the tag
+// description Retrieves the description of the tag
+// order(title) Sorts results by title in ascending order
 
-  const params = { delitId };
-  return client.fetch(query, params);
-}
-export async function fetchPartenaires() {
-  const query = `*[_type == "partenaire"]{
-  photo,
-  name,
-  review
-  }`;
-  return client.fetch(query);
-}
-
-export async function fetchPosts() {
-  const query = `*[_type == "post"]{
-    _id,
-    title,
-    slug,
-    author->{
-      _id,
-      name,
-      image,
-      bio,
-      instgram,
-      linkedin,
-      facebook,
-      website,
-      dateJoined
-    },
-    mainImage,
-    categories[]->{
-      _id,
-      title
-    },
-    publishedAt,
-    body,
-    tag
-  }`;
-  return client.fetch(query);
-}
-
-export async function fetchPostById(id: string) {
-  const query = `*[_type == "post" && _id == $id][0]{
-    _id,
-    title,
-    slug,
-     author->{
-      _id,
-      name,
-      image,
-      bio,
-      instagram,
-      linkedin,
-      facebook,
-      website,
-      dateJoined
-    },
-    mainImage,
-    categories[]->{
-      _id,
-      title
-    },
-    publishedAt,
-    body,
-    tag[]->{
-      _id,
-    title,
-    }
-  }`;
-
-  try {
-    const post = await client.fetch(query, { id });
-    return post;
-  } catch (error) {
-    console.error('Error fetching post by id:', error);
-    return null;
-  }
-}
-
-export async function fetchRecentPosts(limit: number = 4) {
-  const query = `*[_type == "post"] | order(publishedAt desc)[0...$limit]{
-    _id,
-    title,
-    slug,
-    author->{
-      _id,
-      name,
-      image,
-      bio,
-      instagram,
-      linkedin,
-      facebook,
-      website,
-      dateJoined
-    },
-    mainImage,
-    categories[]->{
-      _id,
-      title
-    },
-    publishedAt,
-    body,
-    tag
-  }`;
-  return client.fetch(query, { limit });
-}
-// lib/queries.ts
-
-export async function fetchHomePosts() {
-  const query = `*[_type == "post" && displayOnHomePage == true] {
-    _id,
-    title,
-    slug,
-    author->{
-      _id,
-      name,
-      image,
-      bio,
-      instagram,
-      linkedin,
-      facebook,
-      website,
-      dateJoined
-    },
-    mainImage,
-    categories[]->{
-      _id,
-      title
-    },
-    publishedAt,
-    body,
-    tag
-  }`;
-  return client.fetch(query);
-}
-
-export async function fetchCategories() {
-  const query = `*[_type == "category"]{
-  _id,
-  title,
-  }`;
-  return client.fetch(query);
-}
-export async function fetchTags() {
-  const query = `*[_type == "tag"]{
-  _id,
-  title,
-  }`;
-  return client.fetch(query);
-}
+export const ABOUT_US_QUERY = defineQuery(`*[_type == "aboutUs"]{
+        _id,
+        title,
+        slug,
+        body
+      }`);
+// title Retrieves the title of the About Us page
+// slug Retrieves the slug of the About Us page
+// body Retrieves the body of the About Us page
+export const COMMUNIQUES_QUERY = defineQuery(`*[_type =="communiques"]{
+	  ...,
+	  publishedAt,
+	  "illustrations": illustrations[]->,
+	  isDisplayedOnHome,
+	}`);
+// ..., Includes all fields of the "communiques" document from content
+// publishedAt Retrieves the publication date of the communique
+// illustrations Retrieves the illustrations image with some metadata  of the communique
+// isDisplayedOnHome Indicates if the communique should be displayed on the homepage

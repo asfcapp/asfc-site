@@ -14,18 +14,41 @@ import { Home } from 'src/types/home';
 // ----------------------------------------------------------------------
 
 export default function HomeAbout() {
-  const [data, setData] = useState<Home | null>(null);
+  // const [data, setData] = useState<Home | null>(null);
 
-  console.log(data);
+  // console.log(data);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedData = await fetchHomeData();
-      setData(fetchedData);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const fetchedData = await fetchHomeData();
+  //     setData(fetchedData);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
+  const data = {
+    sectionTitle: 'About',
+    about: 'About Us',
+    aboutdescription:
+      'We are a team of creative and talented individuals who love to create and share our knowledge with the world. We are passionate about what we do and we are always looking for new ways to improve our skills.',
+    rows: [
+      {
+        title: 'Our Mission',
+        content:
+          'Our mission is to provide the best possible service to our clients. We strive to create innovative solutions that will help our clients achieve their goals.',
+      },
+      {
+        title: 'Our Vision',
+        content:
+          'Our vision is to be the leading provider of digital marketing services in the world. We want to help our clients succeed in the digital age by providing them with the tools and knowledge they need to grow their businesses.',
+      },
+      {
+        title: 'Our Values',
+        content:
+          'Our values are at the core of everything we do. We believe in honesty, integrity, and transparency. We are committed to providing our clients with the highest level of service and support.',
+      },
+    ],
+  };
   return (
     <Container
       sx={{

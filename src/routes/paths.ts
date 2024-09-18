@@ -67,6 +67,14 @@ export const paths = {
       payment: `/e-commerce/account/payment`,
     },
   },
+  // asfc
+  asfc: {
+    root: '/',
+    campaign: '/campaign',
+    chronique_injustice: `/chroniques-injustice`,
+    ressources: `/ressources`,
+    roj: `/roj`,
+  },
   // Auth
   loginCover: '/auth/login-cover',
   loginBackground: '/auth/login-background',

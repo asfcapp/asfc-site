@@ -110,7 +110,7 @@ export const pageLinks = [
 export const navConfig = [
   { title: 'Bienvenue', path: '/' },
   { title: 'Le ROJ', path: '/roj' },
-  { title: 'Campagnes', path: '/campagnes' },
+  { title: 'Campagnes', path: '/campaign' },
   { title: 'Ressources', path: '/ressources' },
   { title: "Chroniques de l'injustice", path: '/chroniques-injustice' },
   // {
