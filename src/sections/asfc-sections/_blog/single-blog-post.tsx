@@ -7,37 +7,54 @@ import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
 
+import urlFor from 'src/lib/sanity';
+
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import { IBlogPostProps } from 'src/types/blog';
-
-import PostTimeBlock from '../common/post-time-block';
+import PostTimeBlock from './common/post-time-block';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: IBlogPostProps;
+  blog: any;
 };
 
-export default function TravelPostItem({ post }: Props) {
+export default function SingleBlogPost({ blog }: Props) {
+  const coverImage = blog.illustrations.find(
+    (illustration: any) => illustration.isCoverImage === true
+  );
   return (
     <Stack spacing={2.5}>
-      <Image src={post.coverUrl} alt={post.title} ratio="1/1" sx={{ borderRadius: 2 }} />
+      {coverImage && (
+        <Image
+          src={urlFor(coverImage.imageAsset.image.asset).url() ?? ''}
+          alt={blog.title}
+          ratio="1/1"
+          sx={{ borderRadius: 2 }}
+        />
+      )}
 
       <Stack spacing={1}>
-        <PostTimeBlock createdAt={fDate(post.createdAt)} duration={post.duration} />
+        <PostTimeBlock createdAt={fDate(blog.publishedAt)} duration={blog.readingTime} />
 
-        <Link component={RouterLink} href={paths.travel.post} color="inherit">
+        <Link
+          component={RouterLink}
+          href={paths.asfc.chronique_injustice + '/' + blog.slug?.current || ''}
+          color="inherit"
+        >
           <TextMaxLine variant="h5" persistent>
-            {post.title}
+            {blog.title}
           </TextMaxLine>
         </Link>
       </Stack>
 
       <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-        <Avatar src={post.author.avatarUrl} sx={{ mr: 1 }} />
-        {post.author.name}
+        <Avatar
+          src={urlFor(blog.author.image?.imageAsset.image.asset)?.url() ?? ''}
+          sx={{ mr: 1 }}
+        />
+        {blog.author.name}
       </Stack>
     </Stack>
   );

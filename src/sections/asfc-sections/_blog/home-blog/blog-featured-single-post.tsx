@@ -16,7 +16,7 @@ import urlFor from 'src/lib/sanity';
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import PostTimeBlock from './post-time-block';
+import PostTimeBlock from '../common/post-time-block';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +27,6 @@ type Props = {
 
 export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
   const theme = useTheme();
-  console.log('blog image', blog.illustrations[0].imageAsset);
   const coverImage = blog.illustrations.find(
     (illustration: any) => illustration.isCoverImage === true
   );
@@ -65,7 +64,7 @@ export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
 
         <Link
           component={RouterLink}
-          href={paths.asfc.chronique_injustice + '/' + (blog.slug?.current || '')}
+          href={paths.asfc.chronique_injustice + '/' + blog.slug?.current || ''}
           color="inherit"
         >
           <TextMaxLine
@@ -82,9 +81,9 @@ export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
 
         {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>{blog.description}</TextMaxLine>}
 
-        {/* <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
+        <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
           <Avatar
-            src={post.author.avatarUrl}
+            src={urlFor(blog.author.image?.imageAsset.image.asset)?.url() ?? ''}
             sx={{
               mr: 1,
               width: 32,
@@ -95,8 +94,8 @@ export default function BlogFeaturedSinglePost({ blog, largePost }: Props) {
               }),
             }}
           />
-          {post.author.name}
-        </Stack> */}
+          {blog.author.name}
+        </Stack>
       </Stack>
     </Box>
   );

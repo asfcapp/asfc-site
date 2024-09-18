@@ -15,15 +15,18 @@ import Iconify from 'src/components/iconify';
 
 import { IBlogPostProps } from 'src/types/blog';
 
+import urlFor from 'src/lib/sanity';
 // ----------------------------------------------------------------------
 
 type Props = {
-  post: IBlogPostProps;
+  blog: any;
 };
 
-export default function TravelPostHero({ post }: Props) {
+export default function SingleBlogHero({ blog }: Props) {
   const theme = useTheme();
-
+  const coverImage = blog.illustrations.find(
+    (illustration: any) => illustration.isCoverImage === true
+  );
   return (
     <Box
       sx={{
@@ -32,7 +35,7 @@ export default function TravelPostHero({ post }: Props) {
         ...bgGradient({
           startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
           endColor: `${theme.palette.common.black} 75%`,
-          imgUrl: post.heroUrl,
+          imgUrl: urlFor(coverImage.imageAsset.image.asset)?.url() ?? '',
         }),
       }}
     >
@@ -54,24 +57,24 @@ export default function TravelPostHero({ post }: Props) {
               }}
             >
               <Typography variant="body2" sx={{ opacity: 0.72 }}>
-                {post.duration}
+                {blog.readingTime}
               </Typography>
 
               <Typography variant="h2" component="h1">
-                {post.title}
+                {blog.title}
               </Typography>
 
               <Typography variant="caption" sx={{ opacity: 0.72 }}>
-                {fDate(post.createdAt, 'dd/MM/yyyy p')}
+                {fDate(blog.publishedAt, 'dd/MM/yyyy p')}
               </Typography>
 
-              <Stack direction="row">
+              {/* <Stack direction="row">
                 {_socials.map((social) => (
                   <IconButton key={social.value}>
                     <Iconify icon={social.icon} sx={{ color: social.color }} />
                   </IconButton>
                 ))}
-              </Stack>
+              </Stack> */}
             </Stack>
           </Grid>
         </Grid>

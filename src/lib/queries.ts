@@ -9,7 +9,7 @@ export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagn
       description,
       infractions[]-> {
         _id,
-        infractionSlug,
+        slug,
         infractionName,
         briefDescription,
         infractionImage->,
@@ -22,7 +22,8 @@ export const CAMPAIGNS_WITH_INFRACTIONS_QUERY = defineQuery(`*[_type == "campagn
 },
       seo->
     }`);
-export const BLOG_QUERY = defineQuery(` *[_type == "blog"] {
+export const BLOG_QUERY = defineQuery(`*[_type == "blog"] {
+  _id,
   title,
   slug,
   body,
@@ -41,6 +42,13 @@ export const BLOG_QUERY = defineQuery(` *[_type == "blog"] {
   category,
   readingTime,
   publishedAt,
+  author->{
+    ...,
+    image->{
+      ...,
+      imageAsset->
+    }
+  },
   isDisplayedOnHome
 } | order(publishedAt desc)`);
 //  ..., Includes all fields of the "blog" document

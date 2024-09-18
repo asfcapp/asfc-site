@@ -8,6 +8,5 @@ import { ROJ_QUERY } from 'src/lib/queries';
 
 export default async function RojLandingPage() {
   const rojData = await sanityFetch({ query: ROJ_QUERY });
-  console.log('rojData', rojData);
   return <RojView roj={rojData} />;
 }

@@ -7,6 +7,7 @@ import BlogView from 'src/sections/asfc-sections/_blog/view/blog-view';
 
 export default async function ChroniqueInjusticePage() {
   const blogData = await sanityFetch({ query: BLOG_QUERY });
-  console.log('blogData', blogData);
-  return <BlogView blogs={blogData} />;
+  const blogOfficialData = blogData.filter((blog: any) => blog.category === 'official');
+  const blogCommunityData = blogData.filter((blog: any) => blog.category === 'community');
+  return <BlogView blogOfficial={blogOfficialData} blogCommunity={blogCommunityData} />;
 }
