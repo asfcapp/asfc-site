@@ -10,7 +10,6 @@ import { _socials } from 'src/_mock';
 
 import Iconify from 'src/components/iconify';
 
-import { ICaseStudyProps } from 'src/types/case-study';
 
 // ----------------------------------------------------------------------
 

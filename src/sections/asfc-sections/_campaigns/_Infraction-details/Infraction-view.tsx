@@ -3,21 +3,18 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 
-import urlFor from 'src/lib/sanity';
 import { paths } from 'src/routes/paths';
 
-import { _caseStudies, _testimonials } from 'src/_mock';
+import urlFor from 'src/lib/sanity';
+// import { _caseStudies } from 'src/_mock';
 
 import Image from 'src/components/image';
 import RichText from 'src/components/rich-text/rich-text';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import InfractionData from './Infraction-gallery';
-import InfractionPublication from './Infraction-publication';
-
 // ----------------------------------------------------------------------
 
-const _mockCaseStudy = _caseStudies[0];
+// const _mockCaseStudy = _caseStudies[0];
 type Props = {
   infraction: any;
 };
