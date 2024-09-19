@@ -41,7 +41,7 @@ export default function CampaignCoverItem({ campaign }: Props) {
           <Typography color="inherit" variant="h2" component="h1" lineHeight={1}>
             {campaign.name}
           </Typography>
-          <TextMaxLine line={3} variant="body2" sx={{ color: 'text.secondary' }}>
+          <TextMaxLine line={15} variant="body2" sx={{ color: 'text.secondary' }}>
             {campaign.description}
           </TextMaxLine>
         </Stack>

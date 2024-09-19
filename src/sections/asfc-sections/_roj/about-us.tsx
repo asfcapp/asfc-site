@@ -18,7 +18,7 @@ export default function AboutUs({ roj }: props) {
   const ourValues = [
     { key: 'Mission', value: roj?.about.mission },
     { key: 'Vision', value: roj?.about.vision },
-    { key: 'Values', value: roj?.about.values },
+    { key: 'Valeurs', value: roj?.about.values },
   ];
   return (
     <Container
@@ -53,21 +53,12 @@ export default function AboutUs({ roj }: props) {
           }}
         >
           <Typography component="h1" variant="overline" sx={{ color: 'text.disabled' }}>
-            About us
+            A propos
           </Typography>
           <Typography variant="h2" sx={{ my: 3 }}>
             {roj?.about.title}
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{roj?.about.description}</Typography>
-          {/* <Button
-            size="large"
-            color="inherit"
-            endIcon={<Iconify icon="carbon:chevron-right" />}
-            sx={{ my: 5 }}
-          >
-            Lean more
-          </Button> 
-          remove this button */}
         </Grid>
 
         <Grid xs={12} md={6}>

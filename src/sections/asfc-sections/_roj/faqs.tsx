@@ -49,7 +49,7 @@ export default function RojFaqs({ roj }: props) {
               FAQS
             </Typography>
 
-            <Typography variant="h2">Frequently Asked Questions</Typography>
+            <Typography variant="h2">Le ROJ en questions</Typography>
           </Stack>
 
           {Faqs.map((faq: any) => (
