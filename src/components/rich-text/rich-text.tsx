@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 
 import { Box, Link, List, ListItem, Typography } from '@mui/material';
 
 import urlFor from 'src/lib/sanity';
+
+import Image from 'src/components/image';
 
 type props = {
   content: any;
@@ -90,9 +91,7 @@ const RichText = ({ content }: props) => (
             <Image
               src={value?.image ? (urlFor(value?.image.asset)?.url() ?? '') : ''}
               alt={value.image.alt || ''}
-              layout="responsive"
-              width={800}
-              height={600}
+              sx={{ borderRadius: 2 }}
             />
           </Box>
         ),
