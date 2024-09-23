@@ -13,7 +13,7 @@ import TextMaxLine from 'src/components/text-max-line';
 
 import { IBlogPostProps } from 'src/types/blog';
 
-import PostTimeBlock from '../common/post-time-block';
+import PostTimeBlock from '../../common/post-time-block';
 
 // ----------------------------------------------------------------------
 

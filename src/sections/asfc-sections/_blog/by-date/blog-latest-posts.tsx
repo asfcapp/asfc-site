@@ -14,7 +14,7 @@ import Iconify from 'src/components/iconify';
 import { IBlogPostProps } from 'src/types/blog';
 
 import PostItem from './blog-latest-post-item';
-import PostItemMobile from '../common/post-item-mobile';
+import PostItemMobile from '../../common/post-item-mobile';
 
 // ----------------------------------------------------------------------
 

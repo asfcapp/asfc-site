@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import { _tags } from 'src/_mock';
 
 import BlogPosts from '../blog-posts ';
-import PostSidebar from '../common/post-sidebar';
-import PostSearchMobile from '../common/post-search-mobile';
+import PostSidebar from '../../common/post-sidebar';
+import PostSearchMobile from '../../common/post-search-mobile';
 // ----------------------------------------------------------------------
 type Props = {
   blogs: any;

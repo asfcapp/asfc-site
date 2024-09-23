@@ -59,15 +59,8 @@ export default function NavMobile({ data }: NavProps) {
           </List>
 
           <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="inherit"
-              href={paths.zoneStore}
-              target="_blank"
-              rel="noopener"
-            >
-              Buy Now
+            <Button fullWidth variant="contained" color="inherit" href={paths.asfc.communique}>
+              Espace Media
             </Button>
           </Stack>
         </Scrollbar>

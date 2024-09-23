@@ -13,9 +13,9 @@ import RichText from 'src/components/rich-text/rich-text';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 // import PostTags from '../../blog/common/post-tags';
-import PostAuthor from '../common/post-author';
-import PostSidebar from '../common/post-sidebar';
+import PostAuthor from '../../common/post-author';
 import SingleBlogHero from '../single-blog-hero ';
+import PostSidebar from '../../common/post-sidebar';
 
 // import PostSocialsShare from '../../blog/common/post-socials-share';
 // import TravelLatestPosts from '../../blog/travel/travel-latest-posts';

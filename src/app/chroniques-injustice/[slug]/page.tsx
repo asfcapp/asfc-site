@@ -11,5 +11,7 @@ export default async function ChroniqueInjusticePage({ params }: { params: { slu
     (blog: any) => blog.slug?.current === decodeURIComponent(params.slug)
   );
   const recentBlogs = blogData.filter((blog: any) => blog.category === SingleBlogData.category);
-  return <BlogDetailView blog={SingleBlogData} recentBlogs={recentBlogs.slice(0, 4)} />;
+  return (
+    SingleBlogData && <BlogDetailView blog={SingleBlogData} recentBlogs={recentBlogs.slice(0, 4)} />
+  );
 }

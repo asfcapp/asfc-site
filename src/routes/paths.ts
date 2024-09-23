@@ -74,6 +74,7 @@ export const paths = {
     chronique_injustice: `/chroniques-injustice`,
     ressources: `/ressources`,
     roj: `/roj`,
+    communique: `/communique-presse`,
   },
   // Auth
   loginCover: '/auth/login-cover',

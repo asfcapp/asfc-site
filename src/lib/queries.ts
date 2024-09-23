@@ -117,8 +117,18 @@ export const ABOUT_US_QUERY = defineQuery(`*[_type == "aboutUs"]{
 // body Retrieves the body of the About Us page
 export const COMMUNIQUES_QUERY = defineQuery(`*[_type =="communiques"]{
 	  ...,
+    author->{
+      ...,
+      image->{
+        ...,
+      imageAsset->{...}
+      }
+    },
 	  publishedAt,
-	  "illustrations": illustrations[]->,
+	  illustrations[]->{
+        ...,
+        imageAsset->{...}
+      },
 	  isDisplayedOnHome,
 	}`);
 // ..., Includes all fields of the "communiques" document from content

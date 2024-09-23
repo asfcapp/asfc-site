@@ -108,15 +108,9 @@ export const pageLinks = [
 ];
 
 export const navConfig = [
-  { title: 'Bienvenue', path: '/' },
-  { title: 'Le ROJ', path: '/roj' },
-  { title: 'Campagnes', path: '/campaign' },
-  { title: 'Ressources', path: '/ressources' },
-  { title: "Chroniques de l'injustice", path: '/chroniques-injustice' },
-  // {
-  //   title: 'Pages',
-  //   path: paths.pages,
-  //   children: [pageLinks[0], pageLinks[1], pageLinks[2], pageLinks[3], pageLinks[4], pageLinks[5]],
-  // },
-  // { title: 'Docs', path: paths.docs },
+  { title: 'Bienvenue', path: paths.asfc.root },
+  { title: 'Le ROJ', path: paths.asfc.roj },
+  { title: 'Campagnes', path: paths.asfc.campaign },
+  { title: 'Ressources', path: paths.asfc.ressources },
+  { title: "Chroniques de l'injustice", path: paths.asfc.chronique_injustice },
 ];

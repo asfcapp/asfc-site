@@ -12,7 +12,7 @@ import urlFor from 'src/lib/sanity';
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 
-import PostTimeBlock from './common/post-time-block';
+import PostTimeBlock from '../common/post-time-block';
 
 // ----------------------------------------------------------------------
 

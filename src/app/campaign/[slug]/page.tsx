@@ -8,5 +8,5 @@ export default async function InfractionPage({ params }: { params: { slug: strin
   const infraction = CampaignData[0].infractions.find(
     (item: any) => item.slug?.current === decodeURIComponent(params.slug)
   );
-  return <InfractionView infraction={infraction} />;
+  return infraction && <InfractionView infraction={infraction} />;
 }
